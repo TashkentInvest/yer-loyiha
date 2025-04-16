@@ -18,6 +18,7 @@ use App\Http\Controllers\Blade\ApiUserController;
 Route::post('/login', [ApiAuthController::class, 'login']);
 
 Route::get('/aktivs', [AktivController::class, 'getLots']);
+Route::get('/lot/qr-code/{lat}/{lng}', [AktivController::class, 'generateQrCode']);
 
 
 Route::group(['middleware' => 'api-auth'], function () {

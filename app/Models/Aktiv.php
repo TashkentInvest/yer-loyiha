@@ -72,29 +72,60 @@ class Aktiv extends Model
     }
     protected $fillable = [
         'user_id',
-        'action',
-        'action_timestamp',
+        'lot_number',
         'object_name',
         'balance_keeper',
         'location',
         'land_area',
         'building_area',
-        'gas',
-        'water',
-        'electricity',
-        'additional_info',
+        'building_type',
+        'start_price',
+        'sold_price',
+        'auction_date',
+        'winner_name',
+        'winner_phone',
+        'payment_type',
+        'zone',
+        'kadastr_raqami',
         'geolokatsiya',
         'latitude',
         'longitude',
-        'kadastr_raqami',
-        'sub_street_id',
-        'street_id',
-        'building_type',
+        'gas',
+        'water',
+        'electricity',
+        'auction_status',
+        'additional_info',
+        'investment_amount',
+        'job_creation_count',
+        'lot_link',
+        'main_image',
         'kadastr_pdf',
         'hokim_qarori_pdf',
-        'transfer_basis_pdf'
+        'transfer_basis_pdf',
+        'sub_street_id',
+        'street_id',
+        'status_invest_moderator',
+        'action',
+        'action_timestamp',
     ];
 
+    /**
+     * The attributes that should be cast.
+     *
+     * @var array<string, string>
+     */
+    protected $casts = [
+        'land_area' => 'float',
+        'building_area' => 'float',
+        'start_price' => 'float',
+        'sold_price' => 'float',
+        'latitude' => 'float',
+        'longitude' => 'float',
+        'investment_amount' => 'float',
+        'job_creation_count' => 'integer',
+        'auction_date' => 'datetime',
+        'action_timestamp' => 'datetime',
+    ];
     public function files()
     {
         return $this->hasMany(File::class);

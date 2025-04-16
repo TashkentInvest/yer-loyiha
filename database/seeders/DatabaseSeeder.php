@@ -32,7 +32,7 @@ class DatabaseSeeder extends Seeder
             KzSeeder::class,
             // ExcelToDatabaseSeeder::class,
             // ClientDataSeeder::class,
-
+            AktivsDataSeeder::class,
         ]);
     }
 }

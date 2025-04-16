@@ -2,27 +2,30 @@
 <html lang="en">
 
 <head>
-    <title>Toshkent Invest Projects</title>
+    <title>Toshkent Invest Projects | Official Government Investment Portal</title>
 
     <!-- Meta Tags -->
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0,minimal-ui" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="description" content="Toshkent Invest Projects" />
-    <meta name="keywords" content="Invest, Toshkent, Tashkent Invest, Investitsiya, Aksiyadorlik jamiyati" />
-    <meta name="author" content="Tashkent Invest" />
+    <meta name="description"
+        content="Official Toshkent Investment Portal - Explore prime investment opportunities in Tashkent" />
+    <meta name="keywords"
+        content="Invest, Toshkent, Tashkent Invest, Investitsiya, Aksiyadorlik jamiyati, Investment, Real Estate, Government" />
+    <meta name="author" content="Tashkent Invest Administration" />
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://www.toshkentinvest.uz" />
-    <meta property="og:title" content="Toshkent Invest Projects" />
-    <meta property="og:description" content="Toshkent Invest" />
+    <meta property="og:title" content="Toshkent Invest - Official Government Investment Portal" />
+    <meta property="og:description" content="Explore official investment opportunities in Tashkent city" />
     <meta property="og:image" content="{{ asset('assets/projects-map/images/og-image.png') }}" />
 
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Toshkent Invest Projects" />
-    <meta name="twitter:description" content="Toshkent Invest" />
+    <meta name="twitter:title" content="Toshkent Invest - Official Government Portal" />
+    <meta name="twitter:description" content="Explore official investment opportunities in Tashkent city" />
     <meta name="twitter:image" content="{{ asset('assets/projects-map/images/twitter-image.png') }}" />
 
     <!-- Favicon -->
@@ -31,6 +34,13 @@
     <!-- Include SimpleBar CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/simplebar@latest/dist/simplebar.min.css">
 
+    <!-- Google Fonts - Official Government Style -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Roboto:wght@300;400;500;700&display=swap"
+        rel="stylesheet">
+
     <!-- Stylesheets -->
     <link rel="stylesheet" href="{{ asset('assets/projects-map/fonts/tabler-icons.min.css') }}" />
     <link rel="stylesheet" href="{{ asset('assets/projects-map/fonts/material.css') }}" />
@@ -38,19 +48,720 @@
     <link rel="stylesheet" href="{{ asset('assets/projects-map/css/custom.style.css') }}" />
     <link rel="stylesheet" href="{{ asset('assets/projects-map/css/icon.css') }}" />
 
-    <script src="https://cdn.jsdelivr.net/npm/whatwg-fetch@3.6.2/dist/fetch.umd.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@babel/standalone@7.19.3/babel.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-
-
-
     <!-- Font Awesome for Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
 
+    <!-- Load scripts asynchronously -->
+    <script defer src="https://cdn.jsdelivr.net/npm/whatwg-fetch@3.6.2/dist/fetch.umd.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 
-    <!-- Custom Styles -->
+    <!-- Enhanced Government-Style CSS -->
     <style>
-        /* Modal Styles */
+        /* Global font settings for government style */
+        body {
+            font-family: 'Montserrat', 'Roboto', sans-serif;
+            background-color: #f8f9fa;
+        }
+
+        /* Government color scheme */
+        :root {
+            --primary-color: #10316b;
+            --secondary-color: #1a4a9e;
+            --accent-color: #f0f6ff;
+            --text-color: #333333;
+            --light-text: #666666;
+            --success-color: #2e7d32;
+            --warning-color: #ed6c02;
+            --danger-color: #d32f2f;
+            --info-color: #0288d1;
+            --dark-overlay: rgba(0, 0, 0, 0.75);
+            --light-overlay: rgba(255, 255, 255, 0.85);
+        }
+
+        /* Header styling - Improved Government Style */
+        .pc-header {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15);
+            border-bottom: 2px solid #fff;
+            height: 64px;
+        }
+
+        .pc-header .header-wrapper {
+            padding: 0px 20px;
+        }
+
+        .pc-header .pc-head-link,
+        .pc-header .dropdown-toggle {
+            color: white !important;
+        }
+
+        .official-badge {
+            background-color: #fff;
+            color: var(--primary-color);
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            margin-left: 8px;
+            vertical-align: middle;
+            letter-spacing: 0.5px;
+        }
+
+        /* Sidebar styling - Enhanced Government Look */
+        .pc-sidebar {
+            background: linear-gradient(180deg, #f8f9fa 0%, #ffffff 100%);
+            border-right: 1px solid #e0e0e0;
+            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.05);
+        }
+
+        .navbar-content .pc-navbar {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            margin-bottom: 15px;
+            padding: 10px;
+            border-left: 3px solid var(--primary-color);
+        }
+
+        .pc-navbar .pc-item {
+            margin-bottom: 5px;
+        }
+
+        .pc-navbar .pc-link {
+            padding: 8px 10px;
+            transition: all 0.2s ease;
+        }
+
+        .pc-navbar .pc-link:hover {
+            background-color: var(--accent-color);
+            border-radius: 4px;
+        }
+
+        .pc-navbar .pc-caption {
+            margin-top: 15px;
+            font-weight: 600;
+            color: var(--primary-color);
+            border-bottom: 1px solid #e0e0e0;
+            padding-bottom: 5px;
+        }
+
+        /* Selector styling - More Professional */
+        #xml-selector {
+            background-color: white;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            padding: 8px 12px;
+            color: var(--text-color);
+            font-weight: 500;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            min-width: 180px;
+            max-width: 220px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        #xml-selector:hover {
+            border-color: var(--secondary-color);
+        }
+
+        #xml-selector:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 2px rgba(16, 49, 107, 0.25);
+        }
+
+        /* District info styling - Enhanced Governmental Card */
+        #district-info {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.08);
+            padding: 18px;
+            margin-bottom: 20px;
+            border-top: 4px solid var(--primary-color);
+        }
+
+        #district-name {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+            text-align: center;
+            border-bottom: 2px solid var(--accent-color);
+            padding-bottom: 8px;
+            letter-spacing: 0.5px;
+        }
+
+        #info-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        #info-table th {
+            background-color: #f5f5f5;
+            padding: 8px;
+            text-align: center;
+            font-weight: 600;
+            color: var(--primary-color);
+        }
+
+        #info-table td {
+            padding: 8px;
+            border-bottom: 1px solid #eee;
+        }
+
+        #info-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        /* Map Container - Full Screen Map Experience */
+        #map {
+            width: 100%;
+            height: 100vh;
+            /* height: calc(100vh - 64px); */
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+        }
+
+        /* Map Type Controls - Custom Container */
+        .map-type-controls {
+            position: absolute;
+            top: 80px;
+            right: 10px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+            padding: 6px;
+            z-index: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .map-type-btn {
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            padding: 8px 12px;
+            font-size: 12px;
+            font-weight: 500;
+            color: var(--text-color);
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .map-type-btn:hover {
+            background: #f5f5f5;
+        }
+
+        .map-type-btn.active {
+            background: var(--primary-color);
+            color: white;
+            border-color: var(--primary-color);
+        }
+
+        .map-type-btn i {
+            font-size: 14px;
+        }
+
+        /* Search Box - Enhanced Professional Design */
+        .search-box-container {
+            margin: 10px;
+            width: 360px;
+            max-width: 90vw;
+        }
+
+        .search-wrapper {
+            position: relative;
+            background-color: white;
+            border-radius: 4px;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+            display: flex;
+            align-items: center;
+            height: 42px;
+            overflow: hidden;
+            border: 1px solid #e0e0e0;
+            transition: all 0.3s;
+        }
+
+        .search-wrapper:focus-within {
+            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
+            border-color: var(--primary-color);
+        }
+
+        .search-icon {
+            padding: 0 12px;
+            color: var(--primary-color);
+        }
+
+        .search-input {
+            flex: 1;
+            border: none;
+            padding: 0;
+            height: 100%;
+            font-size: 14px;
+            outline: none;
+        }
+
+        .clear-button {
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0 12px;
+            color: #777;
+            transition: color 0.2s;
+        }
+
+        .clear-button:hover {
+            color: var(--danger-color);
+        }
+
+        /* Government Emblem - Official Branded Badge */
+        .gov-emblem {
+            margin: 10px;
+            background-color: white;
+            border-radius: 8px;
+            padding: 10px 15px;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+            text-align: center;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            border-left: 4px solid var(--primary-color);
+        }
+
+        .gov-emblem .emblem-logo {
+            width: 30px;
+            height: 30px;
+            object-fit: contain;
+        }
+
+        .gov-emblem .emblem-text {
+            font-weight: 700;
+            color: var(--primary-color);
+            font-size: 16px;
+            letter-spacing: 0.5px;
+        }
+
+        /* Legend Control - Improved Styling */
+        .legend-control {
+            position: absolute;
+            bottom: 30px;
+            right: 10px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+            padding: 12px;
+            z-index: 1;
+            max-width: 220px;
+            border-left: 4px solid var(--primary-color);
+        }
+
+        .legend-title {
+            font-weight: 600;
+            margin-bottom: 10px;
+            text-align: center;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 6px;
+            color: var(--primary-color);
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+
+        .legend-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .legend-item .legend-marker {
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            margin-right: 10px;
+            border: 2px solid white;
+            box-shadow: 0 0 2px rgba(0, 0, 0, 0.5);
+        }
+
+        .legend-item .legend-marker.red {
+            background-color: #FF0000;
+        }
+
+        .legend-item .legend-marker.yellow {
+            background-color: #FFFF00;
+        }
+
+        .legend-item .legend-marker.blue {
+            background-color: #1a81bd;
+        }
+
+        .legend-item span {
+            font-size: 13px;
+            color: #333;
+            font-weight: 500;
+        }
+
+        /* Info Window - Enhanced Design */
+        .map-info-window {
+            font-family: 'Montserrat', 'Roboto', sans-serif;
+            min-width: 250px;
+        }
+
+        .map-info-window .info-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+            border-bottom: 2px solid #f0f0f0;
+            padding-bottom: 8px;
+        }
+
+        .map-info-window h4 {
+            margin: 0;
+            color: var(--primary-color);
+            font-size: 16px;
+            font-weight: 600;
+        }
+
+        .map-info-window .info-badge {
+            font-size: 10px;
+            padding: 3px 6px;
+            border-radius: 4px;
+            font-weight: 600;
+        }
+
+        .map-info-window .info-body {
+            margin-bottom: 10px;
+        }
+
+        .map-info-window .info-body p {
+            margin: 6px 0;
+            font-size: 13px;
+            display: flex;
+            align-items: center;
+        }
+
+        .map-info-window .info-body p i {
+            margin-right: 8px;
+            width: 16px;
+            text-align: center;
+            color: var(--primary-color);
+        }
+
+        .map-info-window .info-footer {
+            font-size: 12px;
+            color: var(--primary-color);
+            text-align: center;
+            font-weight: 500;
+            border-top: 1px dashed #eee;
+            padding-top: 8px;
+        }
+
+        /* Sidebar Enhancements - Luxury Government Style */
+        #info-sidebar {
+            position: fixed;
+            top: 0;
+            right: -500px;
+            width: 500px;
+            height: 100%;
+            background-color: #fff;
+            overflow-y: auto;
+            transition: right 0.3s ease;
+            z-index: 1000;
+            padding: 0;
+            box-shadow: -5px 0 20px rgba(0, 0, 0, 0.2);
+            border-left: 4px solid var(--primary-color);
+        }
+
+        #info-sidebar.open {
+            right: 0;
+        }
+
+        #info-sidebar .sidebar-header {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            color: white;
+            padding: 15px 20px;
+            position: relative;
+        }
+
+        #info-sidebar .sidebar-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin: 0;
+            padding-right: 30px;
+        }
+
+        #info-sidebar .close-btn {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            font-size: 20px;
+            cursor: pointer;
+            color: white;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.2);
+            transition: background-color 0.2s;
+        }
+
+        #info-sidebar .close-btn:hover {
+            background-color: rgba(255, 255, 255, 0.3);
+        }
+
+        #info-sidebar .sidebar-content {
+            padding: 20px;
+        }
+
+        #info-sidebar .info-content img.custom_sidebar_image {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        #info-sidebar .custom_sidebar_title {
+            font-size: 1.6rem;
+            margin-bottom: 15px;
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--primary-color);
+            padding-bottom: 8px;
+            font-weight: 600;
+        }
+
+        #info-sidebar table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 15px;
+            border: 1px solid #eee;
+        }
+
+        #info-sidebar table th {
+            padding: 10px;
+            text-align: left;
+            background-color: #f5f7fa;
+            border-bottom: 1px solid #ddd;
+            color: var(--primary-color);
+            font-weight: 600;
+        }
+
+        #info-sidebar table td {
+            padding: 10px;
+            text-align: left;
+            border-bottom: 1px solid #eee;
+        }
+
+        #info-sidebar .btn-link {
+            display: inline-block;
+            padding: 10px 15px;
+            background-color: var(--primary-color);
+            color: #fff;
+            text-decoration: none;
+            border-radius: 6px;
+            margin: 8px 5px;
+            transition: background-color 0.3s;
+            font-weight: 500;
+            border: none;
+            cursor: pointer;
+        }
+
+        #info-sidebar .btn-link:hover {
+            background-color: var(--secondary-color);
+        }
+
+        #toggle-currency-btn {
+            background-color: var(--primary-color);
+            color: #fff;
+            padding: 8px 16px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: background-color 0.3s;
+        }
+
+        #toggle-currency-btn:hover {
+            background-color: var(--secondary-color);
+        }
+
+        /* QR Code Container - Enhanced Styling */
+        #qr-code-container {
+            text-align: center;
+            margin: 25px 0;
+            padding: 20px;
+            background-color: #f8f9fa;
+            border-radius: 8px;
+            border: 1px dashed #ddd;
+        }
+
+        #qr-code-container img {
+            width: 180px;
+            height: 180px;
+            margin-bottom: 15px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            background-color: white;
+            padding: 10px;
+            border-radius: 8px;
+        }
+
+        #qr-code-container a {
+            display: inline-block;
+            padding: 8px 16px;
+            background-color: var(--primary-color);
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: 500;
+            transition: background-color 0.3s;
+        }
+
+        #qr-code-container a:hover {
+            background-color: var(--secondary-color);
+        }
+
+        /* Badge Styles - Enhanced Look */
+        .badge {
+            display: inline-block;
+            padding: 0.25em 0.6em;
+            font-size: 75%;
+            font-weight: 600;
+            line-height: 1;
+            text-align: center;
+            white-space: nowrap;
+            vertical-align: baseline;
+            border-radius: 0.25rem;
+            color: #fff;
+        }
+
+        .badge-primary {
+            background-color: var(--primary-color);
+        }
+
+        .badge-success {
+            background-color: var(--success-color);
+        }
+
+        .badge-danger {
+            background-color: var(--danger-color);
+        }
+
+        .badge-warning {
+            background-color: var(--warning-color);
+            color: #fff;
+        }
+
+        .badge-info {
+            background-color: var(--info-color);
+        }
+
+        /* Tabs in sidebar */
+        .sidebar-tabs {
+            display: flex;
+            margin: 20px 0 15px;
+            border-bottom: 1px solid #dee2e6;
+            padding: 0;
+            background-color: #f8f9fa;
+            border-radius: 8px 8px 0 0;
+            overflow: hidden;
+        }
+
+        .sidebar-tab {
+            padding: 12px 15px;
+            cursor: pointer;
+            border: none;
+            background: transparent;
+            margin: 0;
+            flex-grow: 1;
+            text-align: center;
+            font-weight: 500;
+            color: var(--text-color);
+            transition: all 0.2s;
+            position: relative;
+        }
+
+        .sidebar-tab:not(:last-child) {
+            border-right: 1px solid #dee2e6;
+        }
+
+        .sidebar-tab:hover {
+            background-color: #eceff1;
+        }
+
+        .sidebar-tab.active {
+            background-color: #fff;
+            color: var(--primary-color);
+            font-weight: 600;
+        }
+
+        .sidebar-tab.active::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background-color: var(--primary-color);
+        }
+
+        .tab-content {
+            display: none;
+            background-color: #fff;
+            border-radius: 0 0 8px 8px;
+            padding: 20px 0;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        /* Loading animation */
+        .loading-spinner {
+            display: inline-block;
+            width: 50px;
+            height: 50px;
+            border: 4px solid rgba(16, 49, 107, 0.2);
+            border-radius: 50%;
+            border-top-color: var(--primary-color);
+            animation: spin 1s ease-in-out infinite;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            margin-top: -25px;
+            margin-left: -25px;
+            z-index: 9999;
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        .map-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: var(--light-overlay);
+            z-index: 9998;
+            backdrop-filter: blur(3px);
+        }
+
+        /* Modal Styles - Luxurious Government Style */
         .modal {
             display: none;
             position: fixed;
@@ -59,58 +770,69 @@
             top: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0, 0, 0, 0.5);
+            background-color: var(--dark-overlay);
             justify-content: center;
             align-items: center;
+            backdrop-filter: blur(5px);
         }
 
         .modal-content {
             background-color: white;
-            padding: 20px;
+            padding: 30px;
             border-radius: 10px;
             position: relative;
-            max-width: 400px;
+            max-width: 450px;
             text-align: center;
+            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.2);
+            border-top: 5px solid var(--primary-color);
         }
 
         .modal .close {
-            color: #aaa;
+            color: var(--light-text);
             font-size: 28px;
             font-weight: bold;
             position: absolute;
             right: 20px;
             top: 15px;
             cursor: pointer;
+            transition: color 0.2s;
         }
 
         .modal .close:hover,
         .modal .close:focus {
-            color: #000;
+            color: var(--primary-color);
         }
 
         .modal .modal-text {
             font-size: 18px;
-            margin-bottom: 20px;
+            margin-bottom: 25px;
+            color: var(--text-color);
+            line-height: 1.5;
         }
 
         .modal .social-icons {
             display: flex;
             justify-content: center;
-            gap: 15px;
+            gap: 20px;
         }
 
         .modal .social-icons a {
             color: inherit;
             text-decoration: none;
+            transition: transform 0.2s;
+        }
+
+        .modal .social-icons a:hover {
+            transform: scale(1.1);
         }
 
         .modal .social-icons i {
-            font-size: 30px;
+            font-size: 35px;
             transition: color 0.3s;
         }
 
         .modal .social-icons i:hover {
-            color: #007bff;
+            color: var(--primary-color);
         }
 
         .telegram {
@@ -125,122 +847,92 @@
             color: #e4405f;
         }
 
-        /* Sidebar Styles */
-        #info-sidebar {
-            position: fixed;
-            top: 0;
-            right: -400px;
-            width: 400px;
-            height: 100%;
-            background-color: #fff;
-            overflow-y: auto;
-            transition: right 0.3s ease;
-            z-index: 1000;
-            padding: 20px;
-            box-shadow: -2px 0 5px rgba(0, 0, 0, 0.3);
-        }
-
-        #info-sidebar.open {
-            right: 0;
-        }
-
-        #info-sidebar .close-btn {
-            position: absolute;
-            top: 15px;
-            left: 15px;
-            font-size: 24px;
-            cursor: pointer;
-        }
-
-        #info-sidebar .info-content img.custom_sidebar_image {
-            margin-top: 15px;
-            width: 300px;
-            /* height: auto; */
-            margin-bottom: 15px;
-        }
-
-        #info-sidebar .custom_sidebar_title {
-            font-size: 1.5rem;
-            margin-bottom: 15px;
-            color: #007bff;
-        }
-
-        #info-sidebar table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-bottom: 15px;
-        }
-
-        #info-sidebar table th,
-        #info-sidebar table td {
-            padding: 8px;
-            text-align: left;
-            border-bottom: 1px solid #ddd;
-        }
-
-        #info-sidebar .btn-link {
-            display: inline-block;
-            padding: 10px 15px;
-            background-color: #007bff;
-            color: #fff;
-            text-decoration: none;
-            border-radius: 4px;
-        }
-
-        #info-sidebar .btn-link:hover {
-            background-color: #0056b3;
-        }
-
-        #toggle-currency-btn {
-            margin-bottom: 15px;
-            background-color: #007bff;
-            color: #fff;
-            padding: 8px 16px;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-        }
-
-        #toggle-currency-btn:hover {
-            background-color: #0056b3;
-        }
-
-        /* QR Code Styles */
-        #qr-code-container {
-            text-align: center;
-            margin-top: 20px;
-        }
-
-        #qr-code-container img {
-            width: 200px;
-            height: 200px;
-            margin-bottom: 10px;
-        }
-
-        #qr-code-container a {
-            display: inline-block;
-            padding: 8px 16px;
-            background-color: #007bff;
-            color: white;
-            text-decoration: none;
-            border-radius: 4px;
-        }
-
-        #qr-code-container a:hover {
-            background-color: #0056b3;
-        }
-
         /* Responsive Adjustments */
         @media (max-width: 767px) {
             #info-sidebar {
                 width: 100%;
+                right: -100%;
+            }
+
+            .sidebar-tabs {
+                flex-wrap: nowrap;
+                overflow-x: auto;
+                padding-bottom: 5px;
+            }
+
+            .sidebar-tab {
+                font-size: 14px;
+                padding: 10px;
+                white-space: nowrap;
+            }
+
+            .search-box-container {
+                width: 80%;
+            }
+
+            .legend-control {
+                bottom: 20px;
+                right: 20px;
+                max-width: 150px;
+            }
+
+            .map-type-controls {
+                top: 80px;
+                right: 10px;
+            }
+
+            .gov-emblem {
+                padding: 8px 10px;
+            }
+
+            .gov-emblem .emblem-logo {
+                width: 24px;
+                height: 24px;
+            }
+
+            .gov-emblem .emblem-text {
+                font-size: 14px;
+            }
+
+            #district-info {
+                padding: 15px;
+            }
+
+            #district-name {
+                font-size: 18px;
             }
         }
 
-        /* Map Styles */
-        #map {
-            width: 100%;
-            /* height: calc(100vh - 70px); */
+        /* Custom date display */
+        .current-date {
+            position: absolute;
+            bottom: 10px;
+            left: 10px;
+            background-color: white;
+            padding: 8px 12px;
+            border-radius: 6px;
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--primary-color);
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            z-index: 1;
+            border-left: 3px solid var(--primary-color);
+        }
+
+        /* User welcome message */
+        .user-welcome {
+            display: inline-block;
+            background-color: rgba(255, 255, 255, 0.2);
+            padding: 6px 12px;
+            border-radius: 4px;
+            color: white;
+            margin-right: 10px;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .user-welcome i {
+            margin-right: 5px;
         }
     </style>
 </head>
@@ -252,8 +944,8 @@
     <div id="myModal" class="modal">
         <div class="modal-content">
             <span class="close">&times;</span>
-            <p class="modal-text">Пожалуйста, следите за нами в социальных сетях для получения дополнительной информации
-            </p>
+            <p class="modal-text">Добро пожаловать на официальный инвестиционный портал Ташкента. Следите за нами в
+                социальных сетях для получения актуальной информации.</p>
             <div class="social-icons">
                 <a href="https://t.me/toshkentinvestuz" target="_blank" title="Telegram">
                     <i class="fab fa-telegram telegram"></i>
@@ -268,6 +960,11 @@
         </div>
     </div>
 
+    <!-- Loading Overlay -->
+    <div class="map-overlay" id="loadingOverlay">
+        <div class="loading-spinner"></div>
+    </div>
+
     <!-- Page Loader -->
     <div class="page-loader">
         <div class="bar"></div>
@@ -279,110 +976,107 @@
             <div class="m-header">
                 <a href="{{ route('aktivs.index') }}" class="b-brand text-primary">
                     <img src="{{ asset('assets/projects-map/images/logo.png') }}" class="img-fluid logo-lg custom_logo"
-                        alt="logo" />
+                        alt="Toshkent Invest Logo" />
+                    <span class="official-badge">Official</span>
                 </a>
             </div>
-            <div class="navbar-content px-3">
+            <div class="navbar-content px-3" data-simplebar>
                 <ul class="pc-navbar">
-                    <li class="pc-item pc-caption"><label>Xarita</label>
-                        <a class="pc-link" href="{{ route('aktivs.index') }}">Xarita</a>
+                    <li class="pc-item pc-caption"><label>Навигация</label>
+                        <a class="pc-link" href="{{ route('aktivs.index') }}">
+                            <i class="fas fa-map-marked-alt mr-2"></i> Карта инвестиций
+                        </a>
                     </li>
                 </ul>
+
                 <!-- District Information -->
                 <div id="district-info">
                     <div id="district-name">Toshkent</div>
                     <table id="info-table" class="table">
                         <thead>
                             <tr>
-                                <th colspan="2">Ma'lumotlar</th>
+                                <th colspan="2">Основная информация</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
-                                <td>Maydoni</td>
+                                <td><i class="fas fa-map-marked"></i> Площадь</td>
                                 <td id="maydoni">43.5 km²</td>
                             </tr>
                             <tr>
-                                <td>Aholi soni</td>
-                                <td id="aholiSoni">3 mln</td>
+                                <td><i class="fas fa-users"></i> Население</td>
+                                <td id="aholiSoni">3 млн</td>
                             </tr>
                             <tr>
-                                <td>Tumanlar soni</td>
+                                <td><i class="fas fa-city"></i> Районы</td>
                                 <td id="TumanlarSoni">12</td>
                             </tr>
                             <tr>
-                                <td>Mahalla soni</td>
+                                <td><i class="fas fa-home"></i> Махалли</td>
                                 <td id="MahallaSoni">585</td>
                             </tr>
                             <tr>
-                                <td>Savdodagi obyektlar</td>
-                                <td id="savdodaTurganJamiSoni">---</td>
+                                <td><i class="fas fa-building"></i> Объекты</td>
+                                <td id="savdodaTurganJamiSoni">1,457</td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
 
                 <ul class="pc-navbar">
-                    <li class="pc-item pc-caption"><label>Marker Types</label></li>
+                    <li class="pc-item pc-caption"><label>Типы объектов</label></li>
                     <li class="pc-item">
                         <div class="legend-item" style="display: flex; align-items: center; gap: 8px;">
-                            <!-- Marker Icon -->
-                            <span
-                                class="legend-icon"
-                                style="
-                                    display: inline-block;
-                                    width: 12px;
-                                    height: 12px;
-                                    background-color: #FF0000;
-                                    border-radius: 50%;
-                                    box-shadow: 0 0 3px rgba(0,0,0,0.3);
-                                "
-                                title="Yer"
-                            ></span>
-                            <!-- Marker Text -->
-                            <span class="legend-text" style="font-size: 14px; color: #333;">Yer (Red Marker)</span>
+                            <span class="legend-marker red"></span>
+                            <span class="legend-text" style="font-size: 14px; color: #333;">Земельные участки</span>
                         </div>
                     </li>
                     <li class="pc-item">
                         <div class="legend-item" style="display: flex; align-items: center; gap: 8px;">
-                            <span
-                                class="legend-icon"
-                                style="
-                                    display: inline-block;
-                                    width: 12px;
-                                    height: 12px;
-                                    background-color: #FFFF00;
-                                    border-radius: 50%;
-                                    box-shadow: 0 0 3px rgba(0,0,0,0.3);
-                                "
-                                title="TurarBino"
-                            ></span>
-                            <span class="legend-text" style="font-size: 14px; color: #333;">TurarBino (Yellow Marker)</span>
+                            <span class="legend-marker yellow"></span>
+                            <span class="legend-text" style="font-size: 14px; color: #333;">Жилые здания</span>
                         </div>
                     </li>
                     <li class="pc-item">
                         <div class="legend-item" style="display: flex; align-items: center; gap: 8px;">
-                            <span
-                                class="legend-icon"
-                                style="
-                                    display: inline-block;
-                                    width: 12px;
-                                    height: 12px;
-                                    background-color: #1a81bd;
-                                    border-radius: 50%;
-                                    box-shadow: 0 0 3px rgba(0,0,0,0.3);
-                                "
-                                title="NoturarBino"
-                            ></span>
-                            <span class="legend-text" style="font-size: 14px; color: #333;">NoturarBino (Green Marker)</span>
+                            <span class="legend-marker blue"></span>
+                            <span class="legend-text" style="font-size: 14px; color: #333;">Коммерческие
+                                объекты</span>
                         </div>
                     </li>
                 </ul>
 
+                @if (Auth::check())
+                    <ul class="pc-navbar">
+                        <li class="pc-item pc-caption"><label>Управление</label></li>
+                        <li class="pc-item">
+                            <a href="{{ route('aktivs.create') }}" class="pc-link">
+                                <i class="fas fa-plus-circle"></i>
+                                <span>Добавить объект</span>
+                            </a>
+                        </li>
+                        <li class="pc-item">
+                            <a href="#" id="importExcelBtn" class="pc-link">
+                                <i class="fas fa-file-excel"></i>
+                                <span>Импорт из Excel</span>
+                            </a>
+                        </li>
+                        <li class="pc-item">
+                            <a href="/dashboard" class="pc-link">
+                                <i class="fas fa-tachometer-alt"></i>
+                                <span>Панель управления</span>
+                            </a>
+                        </li>
+                    </ul>
+                @endif
+
+                <div class="mt-4">
+                    <p class="text-center text-muted small">© {{ date('Y') }} Toshkent Invest</p>
+                    <p class="text-center text-muted small">Last Updated: 2025-04-16 13:07:11</p>
+                </div>
             </div>
         </div>
     </nav>
-
 
     <!-- Header -->
     <header class="pc-header">
@@ -390,12 +1084,14 @@
             <div class="me-auto pc-mob-drp">
                 <ul class="list-unstyled">
                     <li class="pc-h-item pc-sidebar-collapse">
-                        <a href="#" class="pc-head-link ms-0" id="sidebar-hide"><i
-                                class="ti ti-menu-2"></i></a>
+                        <a href="#" class="pc-head-link ms-0" id="sidebar-hide">
+                            <i class="ti ti-menu-2"></i>
+                        </a>
                     </li>
                     <li class="pc-h-item pc-sidebar-popup" id="hide_in_mobile">
-                        <a href="#" class="pc-head-link ms-0" id="mobile-collapse"><i
-                                class="ti ti-menu-2"></i></a>
+                        <a href="#" class="pc-head-link ms-0" id="mobile-collapse">
+                            <i class="ti ti-menu-2"></i>
+                        </a>
                     </li>
                     <li class="pc-h-item">
                         <select id="xml-selector" class="form-select form-control">
@@ -403,7 +1099,7 @@
                             <option value="bektemir.xml">Bektemir</option>
                             <option value="chilonzor.xml">Chilonzor</option>
                             <option value="mirabod.xml">Mirobod</option>
-                            <option value="mirzo_ulugbek.xml">Mirzo Ulug‘bek</option>
+                            <option value="mirzo_ulugbek.xml">Mirzo Ulug'bek</option>
                             <option value="olmazor.xml">Olmazor</option>
                             <option value="sergeli.xml">Sergeli</option>
                             <option value="shayhontaxur.xml">Shayxontohur</option>
@@ -415,8 +1111,37 @@
                         </select>
                     </li>
                 </ul>
+            </div>
 
-
+            <div class="ms-auto">
+                <ul class="list-unstyled">
+                    @if (Auth::check())
+                        <li class="dropdown pc-h-item">
+                            <a class="pc-head-link dropdown-toggle arrow-none me-0" data-bs-toggle="dropdown"
+                                href="#" role="button" aria-haspopup="false" aria-expanded="false">
+                                <span class="user-welcome"><i class="fas fa-user-circle"></i> InvestUz</span>
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-end">
+                                <a href="#"
+                                    onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
+                                    class="dropdown-item">
+                                    <i class="fas fa-sign-out-alt"></i>
+                                    <span>Выйти</span>
+                                </a>
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                                    class="d-none">
+                                    @csrf
+                                </form>
+                            </div>
+                        </li>
+                    @else
+                        <li class="pc-h-item">
+                            <a href="{{ route('login') }}" class="btn btn-sm btn-outline-light">
+                                <i class="fas fa-sign-in-alt"></i> Вход
+                            </a>
+                        </li>
+                    @endif
+                </ul>
             </div>
         </div>
     </header>
@@ -424,101 +1149,483 @@
     <!-- Map Container -->
     <div id="map"></div>
 
-    <!-- Info Sidebar -->
-    <div id="info-sidebar" data-currency="UZS">
-        <span class="close-btn">&times;</span>
-        <!-- Content will be injected here -->
+    <!-- Map Type Controls -->
+    <div class="map-type-controls">
+        <button class="map-type-btn active" data-type="roadmap"><i class="fas fa-map"></i> Карта</button>
+        <button class="map-type-btn" data-type="satellite"><i class="fas fa-satellite"></i> Спутник</button>
+        <button class="map-type-btn" data-type="hybrid"><i class="fas fa-globe"></i> Гибрид</button>
+        <button class="map-type-btn" data-type="terrain"><i class="fas fa-mountain"></i> Рельеф</button>
     </div>
 
+    <!-- Current Date Display -->
+    <div class="current-date">
+        <i class="far fa-calendar-alt"></i> 2025-04-16 13:07:11
+    </div>
+
+    <!-- Info Sidebar -->
+    <div id="info-sidebar" data-currency="UZS" data-simplebar>
+        <div class="sidebar-header">
+            <h3 class="sidebar-title">Информация об объекте</h3>
+            <span class="close-btn">&times;</span>
+        </div>
+        <div class="sidebar-content">
+            <!-- Content will be injected here -->
+        </div>
+    </div>
+
+    <!-- Import Excel Modal -->
+    @if (Auth::check())
+        <div class="modal" id="importExcelModal">
+            <div class="modal-content" style="max-width: 600px;">
+                <span class="close" data-dismiss="modal">&times;</span>
+                <h4>Импорт данных из Excel</h4>
+                <form id="importExcelForm" action="#!" method="POST"
+                    enctype="multipart/form-data" class="mt-4">
+                    @csrf
+                    <div class="form-group mb-3">
+                        <label for="excel_file" class="form-label">Выберите файл Excel</label>
+                        <input type="file" name="excel_file" id="excel_file" class="form-control" required
+                            accept=".xlsx,.xls">
+                    </div>
+                    <button type="submit" class="btn-link mt-3">
+                        <i class="fas fa-upload"></i> Загрузить и импортировать
+                    </button>
+                </form>
+            </div>
+        </div>
+    @endif
+
+    <!-- Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/simplebar@latest/dist/simplebar.min.js"></script>
     <script src="{{ asset('assets/projects-map/js/pcoded.js') }}"></script>
     <script src="{{ asset('assets/projects-map/js/plugins/feather.min.js') }}"></script>
 
-
-    <!-- Your existing scripts -->
-    <script src="{{ asset('assets/projects-map/js/pcoded.js') }}"></script>
-    <script src="{{ asset('assets/projects-map/js/plugins/feather.min.js') }}"></script>
-
     <!-- Initialize Modal -->
-    <script type="text/babel">
-        document.addEventListener('DOMContentLoaded', function () {
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
             const modal = document.getElementById("myModal");
             const closeButton = document.querySelector(".modal .close");
             const modalShown = localStorage.getItem('modalShown');
 
-            if (!modalShown) {
+            // Check if modal was shown in the last 7 days
+            const lastShown = localStorage.getItem('modalLastShown');
+            const sevenDaysAgo = new Date();
+            sevenDaysAgo.setDate(sevenDaysAgo.getDate() - 7);
+
+            const shouldShowModal = !lastShown || new Date(lastShown) < sevenDaysAgo;
+
+            if (shouldShowModal) {
                 modal.style.display = "flex";
                 localStorage.setItem('modalShown', 'true');
+                localStorage.setItem('modalLastShown', new Date().toISOString());
             }
 
-            closeButton.onclick = function () {
+            closeButton.onclick = function() {
                 modal.style.display = "none";
             };
 
-            window.onclick = function (event) {
+            window.onclick = function(event) {
                 if (event.target == modal) {
                     modal.style.display = "none";
                 }
             };
+
+            // Import Excel modal
+            const importExcelBtn = document.getElementById('importExcelBtn');
+            const importExcelModal = document.getElementById('importExcelModal');
+
+            if (importExcelBtn && importExcelModal) {
+                importExcelBtn.addEventListener('click', function() {
+                    importExcelModal.style.display = 'flex';
+                });
+
+                const closeImportModal = document.querySelectorAll('[data-dismiss="modal"]');
+                closeImportModal.forEach(btn => {
+                    btn.addEventListener('click', function() {
+                        importExcelModal.style.display = 'none';
+                    });
+                });
+            }
+
+            // Form submission with loading indicator
+            const importExcelForm = document.getElementById('importExcelForm');
+            if (importExcelForm) {
+                importExcelForm.addEventListener('submit', function() {
+                    document.getElementById('loadingOverlay').style.display = 'block';
+                });
+            }
         });
     </script>
 
-    <!-- Main JavaScript -->
+    <!-- Main JavaScript - Enhanced with Map Type Controls -->
     <script>
         const baseUrl = "{{ url('') }}";
-        let usdRate = null; // Declare usdRate at the global scope
+        let usdRate = null;
+        let map;
+        let markers = [];
+        const TASHKENT_CENTER = {
+            lat: 41.311081,
+            lng: 69.279251
+        };
+        const ZOOM_LEVEL = 12;
 
         document.addEventListener('DOMContentLoaded', function() {
             // Initialize Google Maps
+            loadGoogleMaps();
+        });
+
+        function loadGoogleMaps() {
             const script = document.createElement('script');
             script.src =
-                `https://maps.googleapis.com/maps/api/js?key=AIzaSyAAnUwWTguBMsDU8UrQ7Re-caVeYCmcHQY&libraries&callback=initMap`;
+                `https://maps.googleapis.com/maps/api/js?key=AIzaSyAAnUwWTguBMsDU8UrQ7Re-caVeYCmcHQY&libraries=places&callback=initMap`;
             script.async = true;
             script.defer = true;
             document.head.appendChild(script);
-        });
-
-
+        }
 
         function initMap() {
+            // Show loading
+            document.getElementById('loadingOverlay').style.display = 'block';
+
             const urlParams = new URLSearchParams(window.location.search);
             const urlLat = parseFloat(urlParams.get('lat'));
             const urlLng = parseFloat(urlParams.get('lng'));
 
-            const map = new google.maps.Map(document.getElementById('map'), {
-                zoom: urlLat && urlLng ? 15 : 12,
-                center: {
-                    lat: urlLat || 41.311,
-                    lng: urlLng || 69.279
+            // Enhanced Government Map Styling
+            const mapStyles = [{
+                    "featureType": "administrative",
+                    "elementType": "labels.text.fill",
+                    "stylers": [{
+                        "color": "#10316b"
+                    }]
                 },
-                mapTypeId: google.maps.MapTypeId.HYBRID
+                {
+                    "featureType": "administrative.land_parcel",
+                    "elementType": "geometry.stroke",
+                    "stylers": [{
+                        "color": "#dcd2be"
+                    }]
+                },
+                {
+                    "featureType": "administrative.land_parcel",
+                    "elementType": "labels.text.fill",
+                    "stylers": [{
+                        "color": "#10316b"
+                    }]
+                },
+                {
+                    "featureType": "administrative.neighborhood",
+                    "elementType": "labels.text.fill",
+                    "stylers": [{
+                        "color": "#10316b"
+                    }]
+                },
+                {
+                    "featureType": "administrative.province",
+                    "elementType": "geometry.stroke",
+                    "stylers": [{
+                        "color": "#10316b"
+                    }, {
+                        "weight": 1
+                    }]
+                },
+                {
+                    "featureType": "landscape",
+                    "elementType": "geometry",
+                    "stylers": [{
+                        "color": "#f5f5f5"
+                    }]
+                },
+                {
+                    "featureType": "landscape.man_made",
+                    "elementType": "geometry.fill",
+                    "stylers": [{
+                        "color": "#eeeeee"
+                    }]
+                },
+                {
+                    "featureType": "landscape.natural",
+                    "elementType": "geometry.fill",
+                    "stylers": [{
+                        "color": "#e8f0f9"
+                    }]
+                },
+                {
+                    "featureType": "poi",
+                    "elementType": "geometry",
+                    "stylers": [{
+                        "color": "#dfd2ae"
+                    }]
+                },
+                {
+                    "featureType": "poi",
+                    "elementType": "labels.text.fill",
+                    "stylers": [{
+                        "color": "#10316b"
+                    }]
+                },
+                {
+                    "featureType": "poi.park",
+                    "elementType": "geometry.fill",
+                    "stylers": [{
+                        "color": "#c7e6bd"
+                    }]
+                },
+                {
+                    "featureType": "poi.park",
+                    "elementType": "labels.text.fill",
+                    "stylers": [{
+                        "color": "#336633"
+                    }]
+                },
+                {
+                    "featureType": "road",
+                    "elementType": "geometry",
+                    "stylers": [{
+                        "color": "#ffffff"
+                    }]
+                },
+                {
+                    "featureType": "road",
+                    "elementType": "labels.text.fill",
+                    "stylers": [{
+                        "color": "#696969"
+                    }]
+                },
+                {
+                    "featureType": "road.arterial",
+                    "elementType": "geometry",
+                    "stylers": [{
+                        "color": "#ffffff"
+                    }]
+                },
+                {
+                    "featureType": "road.highway",
+                    "elementType": "geometry",
+                    "stylers": [{
+                        "color": "#ffffff"
+                    }]
+                },
+                {
+                    "featureType": "road.highway",
+                    "elementType": "geometry.stroke",
+                    "stylers": [{
+                        "color": "#e9bc62"
+                    }]
+                },
+                {
+                    "featureType": "transit.line",
+                    "elementType": "geometry",
+                    "stylers": [{
+                        "color": "#e5e5e5"
+                    }]
+                },
+                {
+                    "featureType": "transit.station",
+                    "elementType": "geometry",
+                    "stylers": [{
+                        "color": "#eeeeee"
+                    }]
+                },
+                {
+                    "featureType": "water",
+                    "elementType": "geometry.fill",
+                    "stylers": [{
+                        "color": "#b3d3f9"
+                    }]
+                },
+                {
+                    "featureType": "water",
+                    "elementType": "labels.text.fill",
+                    "stylers": [{
+                        "color": "#10316b"
+                    }]
+                }
+            ];
+
+            // Create map with enhanced styling
+            map = new google.maps.Map(document.getElementById('map'), {
+                zoom: urlLat && urlLng ? 17 : ZOOM_LEVEL,
+                center: urlLat && urlLng ? {
+                    lat: urlLat,
+                    lng: urlLng
+                } : TASHKENT_CENTER,
+                mapTypeId: google.maps.MapTypeId.ROADMAP,
+                styles: mapStyles,
+                mapTypeControl: false, // We'll use our custom controls
+                streetViewControl: true,
+                streetViewControlOptions: {
+                    position: google.maps.ControlPosition.RIGHT_BOTTOM
+                },
+                fullscreenControl: true,
+                fullscreenControlOptions: {
+                    position: google.maps.ControlPosition.RIGHT_TOP
+                },
+                zoomControl: true,
+                zoomControlOptions: {
+                    position: google.maps.ControlPosition.RIGHT_CENTER
+                },
+                scaleControl: true,
+                rotateControl: false,
+                gestureHandling: 'greedy'
             });
+
+            // Set up custom map type controls
+            setupMapTypeControls(map);
+
+            // Add enhanced government emblem
+            addGovernmentEmblem(map);
+
+            // Add search box with enhanced design
+            addSearchBox(map);
+
+            // Add legend to map
+            addMapLegend(map);
 
             // Fetch USD exchange rate and then fetch markers
             fetchUsdRate()
                 .then(rate => {
                     usdRate = rate;
                     fetchMarkers(map, usdRate, urlLat, urlLng);
-                    setupEventListeners(); // Move event listener setup here
+                    setupEventListeners();
                 })
                 .catch(error => {
                     console.error('Error fetching USD rate:', error);
-                    // Proceed without usdRate
                     fetchMarkers(map, usdRate, urlLat, urlLng);
-                    setupEventListeners(); // Ensure event listeners are set
+                    setupEventListeners();
                 });
 
             // Handle district selection and KML processing
             handleDistrict(map);
         }
 
+        // Set up custom map type controls
+        function setupMapTypeControls(map) {
+            const mapTypeButtons = document.querySelectorAll('.map-type-btn');
+
+            mapTypeButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const mapType = this.getAttribute('data-type');
+
+                    // Update active state
+                    mapTypeButtons.forEach(btn => btn.classList.remove('active'));
+                    this.classList.add('active');
+
+                    // Set map type
+                    map.setMapTypeId(mapType);
+                });
+            });
+        }
+
+        // Add custom government emblem
+        function addGovernmentEmblem(map) {
+            const emblemDiv = document.createElement('div');
+            emblemDiv.className = 'gov-emblem';
+            emblemDiv.innerHTML = `
+                <img src="{{ asset('assets/projects-map/images/logo.png') }}" class="emblem-logo" alt="Emblem">
+                <span class="emblem-text">TOSHKENT INVEST</span>
+            `;
+            map.controls[google.maps.ControlPosition.LEFT_TOP].push(emblemDiv);
+        }
+
+        // Add a legend to the map
+        function addMapLegend(map) {
+            const legendDiv = document.createElement('div');
+            legendDiv.className = 'legend-control';
+            legendDiv.innerHTML = `
+                <div class="legend-title">ТИПЫ ОБЪЕКТОВ</div>
+                <div class="legend-item">
+                    <span class="legend-marker red"></span>
+                    <span>Земельные участки</span>
+                </div>
+                <div class="legend-item">
+                    <span class="legend-marker yellow"></span>
+                    <span>Жилые здания</span>
+                </div>
+                <div class="legend-item">
+                    <span class="legend-marker blue"></span>
+                    <span>Коммерческие объекты</span>
+                </div>
+            `;
+            map.controls[google.maps.ControlPosition.RIGHT_BOTTOM].push(legendDiv);
+        }
+
+        // Add enhanced search box
+        function addSearchBox(map) {
+            const searchBoxDiv = document.createElement('div');
+            searchBoxDiv.className = 'search-box-container';
+            searchBoxDiv.innerHTML = `
+                <div class="search-wrapper">
+                    <i class="fas fa-search search-icon"></i>
+                    <input type="text" id="pac-input" class="search-input" placeholder="Поиск мест в Ташкенте...">
+                    <button id="clear-search" class="clear-button"><i class="fas fa-times"></i></button>
+                </div>
+            `;
+            map.controls[google.maps.ControlPosition.TOP_LEFT].push(searchBoxDiv);
+
+            // Initialize the search box after the div is added to the map
+            setTimeout(() => {
+                const input = document.getElementById('pac-input');
+                const clearButton = document.getElementById('clear-search');
+                const searchBox = new google.maps.places.SearchBox(input);
+
+                // Bias the SearchBox results towards current map's viewport
+                map.addListener('bounds_changed', function() {
+                    searchBox.setBounds(map.getBounds());
+                });
+
+                // Listen for the event fired when the user selects a prediction
+                searchBox.addListener('places_changed', function() {
+                    const places = searchBox.getPlaces();
+                    if (places.length === 0) {
+                        return;
+                    }
+
+                    // Get the first place
+                    const place = places[0];
+                    if (!place.geometry || !place.geometry.location) {
+                        console.log("Returned place contains no geometry");
+                        return;
+                    }
+
+                    // Center the map on the search result
+                    map.setCenter(place.geometry.location);
+                    map.setZoom(17);
+                });
+
+                // Clear search
+                clearButton.addEventListener('click', function() {
+                    input.value = '';
+                    map.setCenter(TASHKENT_CENTER);
+                    map.setZoom(ZOOM_LEVEL);
+                });
+            }, 300);
+        }
+
         async function fetchUsdRate() {
             try {
+                const cachedRate = localStorage.getItem('usdRate');
+                const cacheTime = localStorage.getItem('usdRateCacheTime');
+
+                // Check if we have a cached rate less than 24 hours old
+                if (cachedRate && cacheTime) {
+                    const cacheAge = Date.now() - parseInt(cacheTime);
+                    if (cacheAge < 24 * 60 * 60 * 1000) { // 24 hours in milliseconds
+                        return parseFloat(cachedRate);
+                    }
+                }
+
+                // If no valid cache, fetch from API
                 const response = await fetch('https://cbu.uz/uz/arkhiv-kursov-valyut/json/');
                 const rates = await response.json();
                 const usdRateObj = rates.find(rate => rate.Ccy === 'USD');
+
                 if (usdRateObj && usdRateObj.Rate) {
-                    return parseFloat(usdRateObj.Rate);
+                    const rate = parseFloat(usdRateObj.Rate);
+                    // Cache the rate
+                    localStorage.setItem('usdRate', rate);
+                    localStorage.setItem('usdRateCacheTime', Date.now());
+                    return rate;
                 } else {
                     throw new Error('USD rate not found in API response');
                 }
@@ -529,13 +1636,20 @@
         }
 
         function fetchMarkers(map, usdRate, urlLat, urlLng) {
+            document.getElementById('loadingOverlay').style.display = 'block';
+
             fetch('/api/aktivs')
                 .then(response => response.json())
                 .then(data => {
                     const markersData = data.lots;
-                    window.markers = markersData; // Make markers globally accessible
+                    window.markers = markersData;
+
+                    // Clear existing markers
+                    markers.forEach(marker => marker.setMap(null));
+                    markers = [];
 
                     let targetMarkerData = null;
+                    const bounds = new google.maps.LatLngBounds();
 
                     markersData.forEach(markerData => {
                         const lat = parseFloat(markerData.lat);
@@ -548,56 +1662,142 @@
                             };
                             const title = markerData.property_name || 'No Title';
 
+                            // Enhanced marker styling
+                            let markerIcon;
 
-                            // Determine icon color based on building_type
-                            let iconUrl;
-                            console.log(markerData.building_type);
-                            if (markerData.building_type == 'yer') {
-                                // Red icon
-                                iconUrl = 'http://maps.google.com/mapfiles/ms/icons/red-dot.png';
-                            } else if (markerData.building_type == 'TurarBino') {
-                                // Yellow icon
-                                iconUrl = 'http://maps.google.com/mapfiles/ms/icons/yellow-dot.png';
-                            } else if (markerData.building_type == 'NoturarBino') {
-                                iconUrl = 'http://maps.google.com/mapfiles/ms/icons/blue-dot.png';
-
+                            if (markerData.building_type === 'yer') {
+                                markerIcon = {
+                                    path: google.maps.SymbolPath.CIRCLE,
+                                    fillColor: '#FF0000',
+                                    fillOpacity: 0.9,
+                                    strokeWeight: 2,
+                                    strokeColor: '#FFFFFF',
+                                    scale: 10
+                                };
+                            } else if (markerData.building_type === 'TurarBino') {
+                                markerIcon = {
+                                    path: google.maps.SymbolPath.CIRCLE,
+                                    fillColor: '#FFFF00',
+                                    fillOpacity: 0.9,
+                                    strokeWeight: 2,
+                                    strokeColor: '#FFFFFF',
+                                    scale: 10
+                                };
+                            } else if (markerData.building_type === 'NoturarBino') {
+                                markerIcon = {
+                                    path: google.maps.SymbolPath.CIRCLE,
+                                    fillColor: '#1a81bd',
+                                    fillOpacity: 0.9,
+                                    strokeWeight: 2,
+                                    strokeColor: '#FFFFFF',
+                                    scale: 10
+                                };
                             } else {
-                                iconUrl = 'http://maps.google.com/mapfiles/ms/icons/green-dot.png';
-
+                                markerIcon = {
+                                    path: google.maps.SymbolPath.CIRCLE,
+                                    fillColor: '#00FF00',
+                                    fillOpacity: 0.9,
+                                    strokeWeight: 2,
+                                    strokeColor: '#FFFFFF',
+                                    scale: 10
+                                };
                             }
 
-
+                            // Create marker with animation
                             const marker = new google.maps.Marker({
                                 position: position,
                                 map: map,
                                 title: title,
-                                icon: iconUrl
+                                icon: markerIcon,
+                                animation: google.maps.Animation.DROP,
+                                optimized: true
                             });
 
-                            // const marker = new google.maps.Marker({
-                            //     position: position,
-                            //     map: map,
-                            //     title: title
-                            // });
+                            // Add to markers array
+                            markers.push(marker);
+
+                            // Extend bounds for autofit but only for Tashkent
+                            if (lat >= 41.2 && lat <= 41.4 && lng >= 69.1 && lng <= 69.4) {
+                                bounds.extend(position);
+                            }
+
+                            // Create info window with basic info for hover
+                            const infoContent = `
+                                <div class="map-info-window">
+                                    <div class="info-header">
+                                        <h4>${title}</h4>
+                                        <span class="info-badge ${markerData.building_type}">${markerData.building_type}</span>
+                                    </div>
+                                    <div class="info-body">
+                                        <p><i class="fas fa-map-marker-alt"></i> ${markerData.address || 'N/A'}</p>
+                                        <p><i class="fas fa-ruler-combined"></i> ${markerData.land_area || 'N/A'} m²</p>
+                                        ${markerData.start_price ? `<p><i class="fas fa-tag"></i> ${formatCurrency(markerData.start_price, 'UZS')}</p>` : ''}
+                                    </div>
+                                    <div class="info-footer">
+                                        <span>Нажмите для подробной информации</span>
+                                    </div>
+                                </div>
+                            `;
+
+
+                            const infoWindow = new google.maps.InfoWindow({
+                                content: infoContent,
+                                maxWidth: 300
+                            });
+
+                            // Show info window on hover (desktop only)
+                            if (window.innerWidth > 768) {
+                                marker.addListener('mouseover', function() {
+                                    infoWindow.open(map, marker);
+                                });
+
+                                marker.addListener('mouseout', function() {
+                                    infoWindow.close();
+                                });
+                            }
 
                             marker.addListener('click', function() {
+                                if (window.innerWidth <= 768) {
+                                    infoWindow.close();
+                                }
+
                                 const sidebar = document.getElementById('info-sidebar');
                                 const isInUSD = sidebar.getAttribute('data-currency') === 'USD';
                                 updateSidebarContent(markerData, isInUSD, usdRate);
                                 sidebar.classList.add('open');
+
+                                // Update URL with marker coordinates for sharing
+                                const newUrl = new URL(window.location.href);
+                                newUrl.searchParams.set('lat', lat);
+                                newUrl.searchParams.set('lng', lng);
+                                window.history.replaceState({}, '', newUrl);
                             });
 
                             // Check if URL parameters match this marker
-                            if (urlLat && urlLng && lat === urlLat && lng === urlLng) {
+                            if (urlLat && urlLng && Math.abs(lat - urlLat) < 0.0001 && Math.abs(lng - urlLng) <
+                                0.0001) {
                                 targetMarkerData = markerData;
                                 map.setCenter({
                                     lat,
                                     lng
                                 });
-                                map.setZoom(15);
+                                map.setZoom(17);
                             }
                         }
                     });
+
+                    // Fit map to markers if no specific location requested
+                    if (!urlLat && !urlLng && markers.length > 0) {
+                        map.fitBounds(bounds);
+
+                        // Don't zoom in too far on small datasets
+                        const listener = google.maps.event.addListener(map, 'idle', function() {
+                            if (map.getZoom() > 15) {
+                                map.setZoom(15);
+                            }
+                            google.maps.event.removeListener(listener);
+                        });
+                    }
 
                     // Open sidebar if URL parameters match a marker
                     if (targetMarkerData) {
@@ -606,14 +1806,57 @@
                         updateSidebarContent(targetMarkerData, isInUSD, usdRate);
                         sidebar.classList.add('open');
                     }
+
+                    // Hide loading overlay
+                    document.getElementById('loadingOverlay').style.display = 'none';
                 })
-                .catch(error => console.error('Error fetching markers:', error));
+                .catch(error => {
+                    console.error('Error fetching markers:', error);
+                    document.getElementById('loadingOverlay').style.display = 'none';
+                    alert('Error loading marker data. Please try refreshing the page.');
+                });
+        }
+
+        // Get badge class based on building type
+        function getBadgeClass(buildingType) {
+            switch (buildingType) {
+                case 'yer':
+                    return 'badge-danger';
+                case 'TurarBino':
+                    return 'badge-warning';
+                case 'NoturarBino':
+                    return 'badge-info';
+                default:
+                    return 'badge-primary';
+            }
+        }
+
+        // Format currency
+        function formatCurrency(amount, currency) {
+            try {
+                if (currency === 'USD') {
+                    return new Intl.NumberFormat('en-US', {
+                        style: 'currency',
+                        currency: 'USD'
+                    }).format(amount);
+                } else {
+                    return new Intl.NumberFormat('uz-UZ', {
+                        style: 'currency',
+                        currency: 'UZS',
+                        minimumFractionDigits: 0
+                    }).format(amount);
+                }
+            } catch (error) {
+                console.error('Error formatting currency:', error);
+                return amount.toString();
+            }
         }
 
         function updateSidebarContent(markerData, isInUSD, usdRate) {
             const sidebar = document.getElementById('info-sidebar');
             const area = parseFloat(markerData.land_area) || 0;
             const priceUZS = parseFloat(markerData.start_price) || 0;
+            const soldPriceUZS = parseFloat(markerData.sold_price) || 0;
 
             // Calculate lot price per sotix
             const lotPricePerSotixUZS = area > 0 ? priceUZS / (area * 100) : 0;
@@ -621,96 +1864,323 @@
             // Convert price and per-sotix based on currency
             let lotPriceFormatted = 'N/A';
             let lotPricePerSotixFormatted = 'N/A';
+            let soldPriceFormatted = 'N/A';
 
             try {
-                if (isInUSD && usdRate && priceUZS > 0) {
-                    const priceUSD = priceUZS / usdRate;
-                    const pricePerSotixUSD = lotPricePerSotixUZS / usdRate;
+                if (isInUSD && usdRate) {
+                    if (priceUZS > 0) {
+                        const priceUSD = priceUZS / usdRate;
+                        const pricePerSotixUSD = lotPricePerSotixUZS / usdRate;
 
-                    lotPriceFormatted = new Intl.NumberFormat('en-US', {
-                        style: 'currency',
-                        currency: 'USD'
-                    }).format(priceUSD);
+                        lotPriceFormatted = new Intl.NumberFormat('en-US', {
+                            style: 'currency',
+                            currency: 'USD'
+                        }).format(priceUSD);
 
-                    lotPricePerSotixFormatted = new Intl.NumberFormat('en-US', {
-                        style: 'currency',
-                        currency: 'USD'
-                    }).format(pricePerSotixUSD);
-                } else if (priceUZS > 0) {
-                    lotPriceFormatted = new Intl.NumberFormat('uz-UZ', {
-                        style: 'currency',
-                        currency: 'UZS',
-                        minimumFractionDigits: 0
-                    }).format(priceUZS);
+                        lotPricePerSotixFormatted = new Intl.NumberFormat('en-US', {
+                            style: 'currency',
+                            currency: 'USD'
+                        }).format(pricePerSotixUSD);
+                    }
 
-                    lotPricePerSotixFormatted = new Intl.NumberFormat('uz-UZ', {
-                        style: 'currency',
-                        currency: 'UZS',
-                        minimumFractionDigits: 0
-                    }).format(lotPricePerSotixUZS);
+                    if (soldPriceUZS > 0) {
+                        const soldPriceUSD = soldPriceUZS / usdRate;
+
+                        soldPriceFormatted = new Intl.NumberFormat('en-US', {
+                            style: 'currency',
+                            currency: 'USD'
+                        }).format(soldPriceUSD);
+                    }
+                } else {
+                    if (priceUZS > 0) {
+                        lotPriceFormatted = new Intl.NumberFormat('uz-UZ', {
+                            style: 'currency',
+                            currency: 'UZS',
+                            minimumFractionDigits: 0
+                        }).format(priceUZS);
+
+                        lotPricePerSotixFormatted = new Intl.NumberFormat('uz-UZ', {
+                            style: 'currency',
+                            currency: 'UZS',
+                            minimumFractionDigits: 0
+                        }).format(lotPricePerSotixUZS);
+                    }
+
+                    if (soldPriceUZS > 0) {
+                        soldPriceFormatted = new Intl.NumberFormat('uz-UZ', {
+                            style: 'currency',
+                            currency: 'UZS',
+                            minimumFractionDigits: 0
+                        }).format(soldPriceUZS);
+                    }
                 }
             } catch (error) {
                 console.error('Error formatting currency:', error);
             }
 
+            // Format building area
+            const buildingArea = markerData.building_area ? `${markerData.building_area} m²` : 'N/A';
+
+            // Format auction date
+            let auctionDate = 'N/A';
+            if (markerData.auction_date) {
+                const dateObj = new Date(markerData.auction_date);
+                if (!isNaN(dateObj)) {
+                    auctionDate = dateObj.toLocaleDateString();
+                }
+            }
+
+            // Format utilities
+            const gas = markerData.gas === 'Yes' ?
+                '<span class="badge badge-success">Yes</span>' :
+                '<span class="badge badge-danger">No</span>';
+
+            const water = markerData.water === 'Yes' ?
+                '<span class="badge badge-success">Yes</span>' :
+                '<span class="badge badge-danger">No</span>';
+
+            const electricity = markerData.electricity === 'Yes' ?
+                '<span class="badge badge-success">Yes</span>' :
+                '<span class="badge badge-danger">No</span>';
+
+            // Building type badge
+            let buildingTypeBadge = '';
+            switch (markerData.building_type) {
+                case 'yer':
+                    buildingTypeBadge = '<span class="badge badge-danger">Yer</span>';
+                    break;
+                case 'TurarBino':
+                    buildingTypeBadge = '<span class="badge badge-warning">Turar Bino</span>';
+                    break;
+                case 'NoturarBino':
+                    buildingTypeBadge = '<span class="badge badge-info">Noturar Bino</span>';
+                    break;
+                default:
+                    buildingTypeBadge = '<span class="badge badge-primary">' + markerData.building_type + '</span>';
+            }
+
             // Generate QR Code URL
             const qrCodeUrl = `${baseUrl}/api/lot/qr-code/${markerData.lat}/${markerData.lng}`;
 
+            // Share URL
+            const shareUrl =
+                `${window.location.origin}${window.location.pathname}?lat=${markerData.lat}&lng=${markerData.lng}`;
+
             sidebar.innerHTML = `
-        <span class="close-btn">&times;</span>
-        <div class="info-content">
-            <img class="custom_sidebar_image" src="${markerData.main_image}" alt="Marker Image"/>
-            <button id="toggle-currency-btn">${isInUSD ? 'Valyutani tahrirlash UZS' : 'Valyutani tahrirlash USD'}</button>
-            <h4 class="custom_sidebar_title"><b>${markerData.property_name || 'No Title'}</b></h4>
-            <table>
-                <tr>
-                    <th class="sidebar_key">Lot raqami</th>
-                    <td>${markerData.lot_number || 'N/A'}</td>
-                </tr>
-                <tr>
-                    <th class="sidebar_key">Manzili</th>
-                    <td>${markerData.address || 'N/A'}</td>
-                </tr>
-                <tr>
-                    <th class="sidebar_key">Yer maydoni (kv)</th>
-                    <td>${markerData.land_area || 'N/A'}</td>
-                </tr>
-                ${priceUZS > 0 ? `
+                <span class="close-btn">&times;</span>
+                <div class="info-content">
+                    <img class="custom_sidebar_image" src="${markerData.main_image}" alt="Marker Image" onerror="this.src='https://cdn.dribbble.com/users/1651691/screenshots/5336717/404_v2.png'"/>
+
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+                        <button id="toggle-currency-btn">${isInUSD ? 'Valyutani tahrirlash UZS' : 'Valyutani tahrirlash USD'}</button>
+                        <div>
+                            <button class="btn-link" onclick="window.open('https://www.google.com/maps/dir/?api=1&destination=${markerData.lat},${markerData.lng}', '_blank')" style="padding: 5px 10px; margin-left: 5px;">
+                                <i class="fas fa-directions"></i> Directions
+                            </button>
+                            <button class="btn-link" onclick="copyToClipboard('${shareUrl}')" style="padding: 5px 10px; margin-left: 5px;">
+                                <i class="fas fa-share-alt"></i> Share
+                            </button>
+                        </div>
+                    </div>
+
+                    <h4 class="custom_sidebar_title"><b>${markerData.property_name || 'No Title'}</b></h4>
+
+                    <div class="sidebar-tabs">
+                        <div class="sidebar-tab active" data-tab="basic-info">Basic Info</div>
+                        <div class="sidebar-tab" data-tab="details">Details</div>
+                        <div class="sidebar-tab" data-tab="auction">Auction</div>
+                        <div class="sidebar-tab" data-tab="additional">Additional</div>
+                    </div>
+
+                    <div id="basic-info" class="tab-content active">
+                        <table>
                             <tr>
-                                <th class="sidebar_key">Boshlang'ich narxi</th>
-                                <td id="price-td">${lotPriceFormatted}</td>
+                                <th class="sidebar_key">Lot raqami</th>
+                                <td>${markerData.lot_number || 'N/A'}</td>
                             </tr>
                             <tr>
-                                <th class="sidebar_key">1 sotix uchun narx</th>
-                                <td>${lotPricePerSotixFormatted}</td>
-                            </tr>` : ''}
-                <tr>
-                    <th class="sidebar_key">Yaratilgan foydalanuvchi</th>
-                    <td>${markerData.user_name || 'N/A'}</td>
-                </tr>
-                <tr>
-                    <th class="sidebar_key">Email</th>
-                    <td>${markerData.user_email || 'N/A'}</td>
-                </tr>
-            </table>
+                                <th class="sidebar_key">Manzili</th>
+                                <td>${markerData.address || 'N/A'}</td>
+                            </tr>
+                            <tr>
+                                <th class="sidebar_key">Building Type</th>
+                                <td>${buildingTypeBadge}</td>
+                            </tr>
+                            <tr>
+                                <th class="sidebar_key">Kadastr raqami</th>
+                                <td>${markerData.kadastr_raqami || 'N/A'}</td>
+                            </tr>
+                            <tr>
+                                <th class="sidebar_key">Yer maydoni</th>
+                                <td>${markerData.land_area || 'N/A'} m²</td>
+                            </tr>
+                            <tr>
+                                <th class="sidebar_key">Qurilish maydoni</th>
+                                <td>${buildingArea}</td>
+                            </tr>
+                            ${priceUZS > 0 ? `
+                                                        <tr>
+                                                            <th class="sidebar_key">Boshlang'ich narxi</th>
+                                                            <td id="price-td">${lotPriceFormatted}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th class="sidebar_key">1 sotix uchun narx</th>
+                                                            <td>${lotPricePerSotixFormatted}</td>
+                                                        </tr>` : ''}
+                        </table>
+                    </div>
 
-            <a target="_blank" href="${markerData.lot_link || '#'}" class="btn-link">Aktivni ko'rish</a>
-        </div>
-    `;
+                    <div id="details" class="tab-content">
+                        <table>
+                            <tr>
+                                <th class="sidebar_key">Balance Keeper</th>
+                                <td>${markerData.balance_keeper || 'N/A'}</td>
+                            </tr>
+                            <tr>
+                                <th class="sidebar_key">Utilities</th>
+                                <td>
+                                    <div>Gas: ${gas}</div>
+                                    <div>Water: ${water}</div>
+                                    <div>Electricity: ${electricity}</div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th class="sidebar_key">Zone</th>
+                                <td>${markerData.zone || 'N/A'}</td>
+                            </tr>
+                            <tr>
+                                <th class="sidebar_key">Coordinates</th>
+                                <td>${markerData.lat}, ${markerData.lng}</td>
+                            </tr>
+                            <tr>
+                                <th class="sidebar_key">Created By</th>
+                                <td>${markerData.user_name || 'N/A'}</td>
+                            </tr>
+                            <tr>
+                                <th class="sidebar_key">Contact Email</th>
+                                <td>${markerData.user_email || 'N/A'}</td>
+                            </tr>
+                        </table>
+                    </div>
+
+                    <div id="auction" class="tab-content">
+                        <table>
+                            <tr>
+                                <th class="sidebar_key">Auction Date</th>
+                                <td>${auctionDate}</td>
+                            </tr>
+                            <tr>
+                                <th class="sidebar_key">Auction Status</th>
+                                <td>${markerData.auction_status || 'N/A'}</td>
+                            </tr>
+                            <tr>
+                                <th class="sidebar_key">Winner Name</th>
+                                <td>${markerData.winner_name || 'N/A'}</td>
+                            </tr>
+                            <tr>
+                                <th class="sidebar_key">Winner Phone</th>
+                                <td>${markerData.winner_phone || 'N/A'}</td>
+                            </tr>
+                            ${soldPriceUZS > 0 ? `
+                                                        <tr>
+                                                            <th class="sidebar_key">Sold Price</th>
+                                                            <td>${soldPriceFormatted}</td>
+                                                        </tr>` : ''}
+                            <tr>
+                                <th class="sidebar_key">Payment Type</th>
+                                <td>${markerData.payment_type || 'N/A'}</td>
+                            </tr>
+                        </table>
+                    </div>
+
+                    <div id="additional" class="tab-content">
+                        <table>
+                            <tr>
+                                <th class="sidebar_key">Investment Amount</th>
+                                <td>${markerData.investment_amount || 'N/A'}</td>
+                            </tr>
+                            <tr>
+                                <th class="sidebar_key">Jobs Created</th>
+                                <td>${markerData.job_creation_count || 'N/A'}</td>
+                            </tr>
+                            <tr>
+                                <th class="sidebar_key">Additional Info</th>
+                                <td><pre style="white-space: pre-wrap; margin: 0;">${markerData.additional_info || 'N/A'}</pre></td>
+                            </tr>
+                        </table>
+
+                        <div id="qr-code-container">
+                            <img src="${qrCodeUrl}" alt="QR Code" />
+                            <a href="${qrCodeUrl}" download="qr-code.svg">Download QR Code</a>
+                        </div>
+                    </div>
+
+                    <div style="margin-top: 15px;">
+                        ${markerData.lot_link ? `<a target="_blank" href="${markerData.lot_link}" class="btn-link"><i class="fas fa-external-link-alt"></i> View External Lot</a>` : ''}
+                        ${markerData.id ? `<a target="_blank" href="${baseUrl}/aktivs/${markerData.id}" class="btn-link"><i class="fas fa-info-circle"></i> View Full Details</a>` : ''}
+
+                        @if (Auth::check())
+                        ${markerData.id ? `<a target="_blank" href="${baseUrl}/aktivs/${markerData.id}/edit" class="btn-link"><i class="fas fa-edit"></i> Edit</a>` : ''}
+                        @endif
+                    </div>
+                </div>
+            `;
+
+            // Add event listeners to tabs
+            const tabButtons = sidebar.querySelectorAll('.sidebar-tab');
+            tabButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    // Remove active class from all tabs
+                    tabButtons.forEach(btn => btn.classList.remove('active'));
+
+                    // Hide all tab contents
+                    const tabContents = sidebar.querySelectorAll('.tab-content');
+                    tabContents.forEach(content => content.classList.remove('active'));
+
+                    // Add active class to clicked tab
+                    this.classList.add('active');
+
+                    // Show the corresponding tab content
+                    const tabId = this.getAttribute('data-tab');
+                    document.getElementById(tabId).classList.add('active');
+                });
+            });
         }
 
+        function copyToClipboard(text) {
+            // Create a temporary input element
+            const input = document.createElement('input');
+            input.value = text;
+            document.body.appendChild(input);
 
+            // Select and copy the text
+            input.select();
+            document.execCommand('copy');
+
+            // Remove the temporary element
+            document.body.removeChild(input);
+
+            // Show feedback to user
+            alert('Link copied to clipboard!');
+        }
 
         function setupEventListeners() {
             document.addEventListener('click', function(event) {
                 if (event.target.matches('.close-btn')) {
                     const sidebar = document.getElementById('info-sidebar');
                     sidebar.classList.remove('open');
+
+                    // Remove URL parameters for sharing
+                    const newUrl = new URL(window.location.href);
+                    newUrl.searchParams.delete('lat');
+                    newUrl.searchParams.delete('lng');
+                    window.history.replaceState({}, '', newUrl);
                 } else if (event.target.matches('#toggle-currency-btn')) {
                     const sidebar = document.getElementById('info-sidebar');
                     const isInUSD = sidebar.getAttribute('data-currency') === 'USD';
                     sidebar.setAttribute('data-currency', isInUSD ? 'UZS' : 'USD');
-                    event.target.textContent = isInUSD ? 'Valyutani tahrirlash USD' : 'Valyutani tahrirlash UZS';
+                    event.target.textContent = isInUSD ? 'Valyutani tahrirlash USD' :
+                        'Valyutani tahrirlash UZS';
 
                     const currentTitle = sidebar.querySelector('.custom_sidebar_title b').textContent;
                     const markerData = window.markers.find(marker => marker.property_name === currentTitle);
@@ -724,8 +2194,39 @@
                     }
                 }
             });
-        }
 
+            // Handle browser back/forward buttons
+            window.addEventListener('popstate', function(event) {
+                const urlParams = new URLSearchParams(window.location.search);
+                const urlLat = parseFloat(urlParams.get('lat'));
+                const urlLng = parseFloat(urlParams.get('lng'));
+
+                if (urlLat && urlLng) {
+                    // Find marker at these coordinates
+                    const markerData = window.markers?.find(m =>
+                        Math.abs(parseFloat(m.lat) - urlLat) < 0.0001 &&
+                        Math.abs(parseFloat(m.lng) - urlLng) < 0.0001
+                    );
+
+                    if (markerData) {
+                        const sidebar = document.getElementById('info-sidebar');
+                        const isInUSD = sidebar.getAttribute('data-currency') === 'USD';
+                        updateSidebarContent(markerData, isInUSD, usdRate);
+                        sidebar.classList.add('open');
+
+                        map.setCenter({
+                            lat: urlLat,
+                            lng: urlLng
+                        });
+                        map.setZoom(17);
+                    }
+                } else {
+                    // Close sidebar when no coordinates in URL
+                    const sidebar = document.getElementById('info-sidebar');
+                    sidebar.classList.remove('open');
+                }
+            });
+        }
 
         // Handle District Selection and KML Files
         function handleDistrict(map) {
@@ -741,9 +2242,8 @@
                 'yunusabod.xml', 'yangihayot.xml'
             ];
 
-            kmlFileNames.forEach(fileName => {
-                processKML(fileName, defaultColor, map, polygons);
-            });
+            // Load KML files in sequence to avoid overwhelming the browser
+            loadKmlFilesSequentially(kmlFileNames, defaultColor, map, polygons, 0);
 
             document.getElementById('xml-selector').addEventListener('change', function(event) {
                 const selectedFile = event.target.value;
@@ -753,11 +2253,8 @@
                     }
 
                     if (selectedFile === 'tashkent') {
-                        map.setCenter({
-                            lat: 41.311,
-                            lng: 69.279
-                        });
-                        map.setZoom(12);
+                        map.setCenter(TASHKENT_CENTER);
+                        map.setZoom(ZOOM_LEVEL);
                         fetchDistrictInfo('tashkent');
                         currentHighlight = 'tashkent';
                     } else {
@@ -768,17 +2265,49 @@
                 }
             });
 
-            function processKML(fileName, color, map, polygons) {
-                fetch(`{{ asset('xml-map') }}/${fileName}`)
-                    .then(response => response.text())
-                    .then(kmlText => {
-                        const paths = parseKML(kmlText);
-                        addPolygon(fileName, [paths], color, map, polygons);
-                        const bounds = new google.maps.LatLngBounds();
-                        paths.forEach(coord => bounds.extend(new google.maps.LatLng(coord.lat, coord.lng)));
-                        map.fitBounds(bounds);
+            function loadKmlFilesSequentially(fileNames, color, map, polygons, index) {
+                if (index >= fileNames.length) return;
+
+                processKML(fileNames[index], color, map, polygons)
+                    .then(() => {
+                        // Process next file after a short delay
+                        setTimeout(() => {
+                            loadKmlFilesSequentially(fileNames, color, map, polygons, index + 1);
+                        }, 50);
                     })
-                    .catch(error => console.error(`Error fetching ${fileName}:`, error));
+                    .catch(error => {
+                        console.error(`Error loading ${fileNames[index]}:`, error);
+                        // Continue with next file despite errors
+                        setTimeout(() => {
+                            loadKmlFilesSequentially(fileNames, color, map, polygons, index + 1);
+                        }, 50);
+                    });
+            }
+
+            function processKML(fileName, color, map, polygons) {
+                return new Promise((resolve, reject) => {
+                    fetch(`{{ asset('xml-map') }}/${fileName}`)
+                        .then(response => response.text())
+                        .then(kmlText => {
+                            const paths = parseKML(kmlText);
+                            if (paths.length > 0) {
+                                addPolygon(fileName, [paths], color, map, polygons);
+
+                                // Only fit bounds when explicitly selecting a district
+                                if (color === highlightColor) {
+                                    const bounds = new google.maps.LatLngBounds();
+                                    paths.forEach(coord => bounds.extend(new google.maps.LatLng(coord.lat,
+                                        coord.lng)));
+                                    map.fitBounds(bounds);
+                                }
+                            }
+                            resolve();
+                        })
+                        .catch(error => {
+                            console.error(`Error fetching ${fileName}:`, error);
+                            reject(error);
+                        });
+                });
             }
 
             function addPolygon(fileName, paths, fillColor, map, polygons) {
@@ -850,7 +2379,7 @@
                         savdodaTurganJamiSoni: 'N/A'
                     },
                     'mirzo_ulugbek.xml': {
-                        name: 'Mirzo Ulug‘bek',
+                        name: 'Mirzo Ulug',
                         maydoni: '59,06 (km²)',
                         aholiSoni: '331,2 ming',
                         TumanlarSoni: '35',
@@ -993,9 +2522,16 @@
                     tableBody.appendChild(row);
                 });
             }
-
         }
     </script>
+
+    <!-- Additional information for page footer -->
+    <footer class="footer-info" style="display: none;">
+        <div class="container">
+            <p>Page generated for InvestUz on 2025-04-16 12:57:47</p>
+            <p>© 2025 Toshkent Invest. All Rights Reserved.</p>
+        </div>
+    </footer>
 </body>
 
 </html>
