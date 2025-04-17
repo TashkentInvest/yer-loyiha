@@ -107,6 +107,7 @@ class Aktiv extends Model
         'status_invest_moderator',
         'action',
         'action_timestamp',
+        'building_type_comment'
     ];
 
     /**

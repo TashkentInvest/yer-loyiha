@@ -95,6 +95,9 @@
             color: white !important;
         }
 
+
+
+
         .official-badge {
             background-color: #fff;
             color: var(--primary-color);
@@ -500,23 +503,23 @@
 
         #info-sidebar .close-btn {
             position: absolute;
-            top: 15px;
+            top: 10px;
             right: 15px;
             font-size: 20px;
             cursor: pointer;
-            color: white;
+            color: rgb(255, 255, 255);
             width: 30px;
             height: 30px;
             display: flex;
             align-items: center;
             justify-content: center;
             border-radius: 50%;
-            background-color: rgba(255, 255, 255, 0.2);
+            background-color: rgba(4, 4, 12, 0.731);
             transition: background-color 0.2s;
         }
 
         #info-sidebar .close-btn:hover {
-            background-color: rgba(255, 255, 255, 0.3);
+            background-color: rgba(0, 0, 0, 0.55);
         }
 
         #info-sidebar .sidebar-content {
@@ -977,46 +980,39 @@
                 <a href="{{ route('aktivs.index') }}" class="b-brand text-primary">
                     <img src="{{ asset('assets/projects-map/images/logo.png') }}" class="img-fluid logo-lg custom_logo"
                         alt="Toshkent Invest Logo" />
-                    <span class="official-badge">Official</span>
+                    {{-- <span class="official-badge">Official</span> --}}
                 </a>
             </div>
             <div class="navbar-content px-3" data-simplebar>
-                <ul class="pc-navbar">
-                    <li class="pc-item pc-caption"><label>Навигация</label>
-                        <a class="pc-link" href="{{ route('aktivs.index') }}">
-                            <i class="fas fa-map-marked-alt mr-2"></i> Карта инвестиций
-                        </a>
-                    </li>
-                </ul>
 
                 <!-- District Information -->
                 <div id="district-info">
-                    <div id="district-name">Toshkent</div>
+                    <div id="district-name">Тошкент</div>
                     <table id="info-table" class="table">
                         <thead>
                             <tr>
-                                <th colspan="2">Основная информация</th>
+                                <th colspan="2">Асосий маълумот</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
-                                <td><i class="fas fa-map-marked"></i> Площадь</td>
-                                <td id="maydoni">43.5 km²</td>
+                                <td><i class="fas fa-map-marked"></i> Майдони</td>
+                                <td id="maydoni">43.5 км²</td>
                             </tr>
                             <tr>
-                                <td><i class="fas fa-users"></i> Население</td>
+                                <td><i class="fas fa-users"></i> Аҳолиси</td>
                                 <td id="aholiSoni">3 млн</td>
                             </tr>
                             <tr>
-                                <td><i class="fas fa-city"></i> Районы</td>
+                                <td><i class="fas fa-city"></i> Туманлар</td>
                                 <td id="TumanlarSoni">12</td>
                             </tr>
                             <tr>
-                                <td><i class="fas fa-home"></i> Махалли</td>
+                                <td><i class="fas fa-home"></i> Маҳаллалар</td>
                                 <td id="MahallaSoni">585</td>
                             </tr>
                             <tr>
-                                <td><i class="fas fa-building"></i> Объекты</td>
+                                <td><i class="fas fa-building"></i> Объектлар</td>
                                 <td id="savdodaTurganJamiSoni">1,457</td>
                             </tr>
                         </tbody>
@@ -1024,55 +1020,56 @@
                 </div>
 
                 <ul class="pc-navbar">
-                    <li class="pc-item pc-caption"><label>Типы объектов</label></li>
+                    <li class="pc-item pc-caption"><label>Объект турлари</label></li>
                     <li class="pc-item">
                         <div class="legend-item" style="display: flex; align-items: center; gap: 8px;">
                             <span class="legend-marker red"></span>
-                            <span class="legend-text" style="font-size: 14px; color: #333;">Земельные участки</span>
+                            <span class="legend-text" style="font-size: 14px; color: #333;">Ер участкалари</span>
                         </div>
                     </li>
                     <li class="pc-item">
                         <div class="legend-item" style="display: flex; align-items: center; gap: 8px;">
                             <span class="legend-marker yellow"></span>
-                            <span class="legend-text" style="font-size: 14px; color: #333;">Жилые здания</span>
+                            <span class="legend-text" style="font-size: 14px; color: #333;">Турар-жой бинолари</span>
                         </div>
                     </li>
                     <li class="pc-item">
                         <div class="legend-item" style="display: flex; align-items: center; gap: 8px;">
                             <span class="legend-marker blue"></span>
-                            <span class="legend-text" style="font-size: 14px; color: #333;">Коммерческие
-                                объекты</span>
+                            <span class="legend-text" style="font-size: 14px; color: #333;">Тижорат
+                                объектлари</span>
                         </div>
                     </li>
                 </ul>
 
                 @if (Auth::check())
                     <ul class="pc-navbar">
-                        <li class="pc-item pc-caption"><label>Управление</label></li>
+                        <li class="pc-item pc-caption"><label>Бошқарув</label></li>
                         <li class="pc-item">
                             <a href="{{ route('aktivs.create') }}" class="pc-link">
                                 <i class="fas fa-plus-circle"></i>
-                                <span>Добавить объект</span>
+                                <span>Объект қўшиш</span>
                             </a>
                         </li>
                         <li class="pc-item">
                             <a href="#" id="importExcelBtn" class="pc-link">
                                 <i class="fas fa-file-excel"></i>
-                                <span>Импорт из Excel</span>
+                                <span>Excel дан импорт</span>
                             </a>
                         </li>
                         <li class="pc-item">
                             <a href="/dashboard" class="pc-link">
                                 <i class="fas fa-tachometer-alt"></i>
-                                <span>Панель управления</span>
+                                <span>Бошқарув панели</span>
                             </a>
                         </li>
                     </ul>
                 @endif
 
                 <div class="mt-4">
-                    <p class="text-center text-muted small">© {{ date('Y') }} Toshkent Invest</p>
-                    <p class="text-center text-muted small">Last Updated: 2025-04-16 13:07:11</p>
+                    <p class="text-center text-muted small" style="font-weight:bold;">© {{ date('Y') }}
+                        TeamDev.uz</p>
+                    <p class="text-center text-muted small">Охирги янгиланиш: 2025-04-16 13:07:11</p>
                 </div>
             </div>
         </div>
@@ -1117,10 +1114,10 @@
                 <ul class="list-unstyled">
                     @if (Auth::check())
                         <li class="dropdown pc-h-item">
-                            <a class="pc-head-link dropdown-toggle arrow-none me-0" data-bs-toggle="dropdown"
+                            {{-- <a class="pc-head-link dropdown-toggle arrow-none me-0" data-bs-toggle="dropdown"
                                 href="#" role="button" aria-haspopup="false" aria-expanded="false">
                                 <span class="user-welcome"><i class="fas fa-user-circle"></i> InvestUz</span>
-                            </a>
+                            </a> --}}
                             <div class="dropdown-menu dropdown-menu-end">
                                 <a href="#"
                                     onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
@@ -1163,7 +1160,7 @@
     </div>
 
     <!-- Info Sidebar -->
-    <div id="info-sidebar" data-currency="UZS" data-simplebar>
+    <div id="info-sidebar" style="padding:5px" data-currency="UZS" data-simplebar>
         <div class="sidebar-header">
             <h3 class="sidebar-title">Информация об объекте</h3>
             <span class="close-btn">&times;</span>
@@ -1179,8 +1176,8 @@
             <div class="modal-content" style="max-width: 600px;">
                 <span class="close" data-dismiss="modal">&times;</span>
                 <h4>Импорт данных из Excel</h4>
-                <form id="importExcelForm" action="#!" method="POST"
-                    enctype="multipart/form-data" class="mt-4">
+                <form id="importExcelForm" action="#!" method="POST" enctype="multipart/form-data"
+                    class="mt-4">
                     @csrf
                     <div class="form-group mb-3">
                         <label for="excel_file" class="form-label">Выберите файл Excel</label>
@@ -1533,20 +1530,20 @@
             const legendDiv = document.createElement('div');
             legendDiv.className = 'legend-control';
             legendDiv.innerHTML = `
-                <div class="legend-title">ТИПЫ ОБЪЕКТОВ</div>
-                <div class="legend-item">
-                    <span class="legend-marker red"></span>
-                    <span>Земельные участки</span>
-                </div>
-                <div class="legend-item">
-                    <span class="legend-marker yellow"></span>
-                    <span>Жилые здания</span>
-                </div>
-                <div class="legend-item">
-                    <span class="legend-marker blue"></span>
-                    <span>Коммерческие объекты</span>
-                </div>
-            `;
+        <div class="legend-title">ОБЪЕКТ ТУРЛАРИ</div>
+        <div class="legend-item">
+            <span class="legend-marker red"></span>
+            <span>Ер участкалари</span>
+        </div>
+        <div class="legend-item">
+            <span class="legend-marker yellow"></span>
+            <span>Турар-жой бинолари</span>
+        </div>
+        <div class="legend-item">
+            <span class="legend-marker blue"></span>
+            <span>Тижорат объектлари</span>
+        </div>
+    `;
             map.controls[google.maps.ControlPosition.RIGHT_BOTTOM].push(legendDiv);
         }
 
@@ -1727,6 +1724,7 @@
                                     <div class="info-header">
                                         <h4>${title}</h4>
                                         <span class="info-badge ${markerData.building_type}">${markerData.building_type}</span>
+                                        <span class="info-badge ${markerData.building_type_comment}">${markerData.building_type_comment}</span>
                                     </div>
                                     <div class="info-body">
                                         <p><i class="fas fa-map-marker-alt"></i> ${markerData.address || 'N/A'}</p>
@@ -1969,96 +1967,100 @@
             sidebar.innerHTML = `
                 <span class="close-btn">&times;</span>
                 <div class="info-content">
-                    <img class="custom_sidebar_image" src="${markerData.main_image}" alt="Marker Image" onerror="this.src='https://cdn.dribbble.com/users/1651691/screenshots/5336717/404_v2.png'"/>
+                    <img class="custom_sidebar_image" src="${markerData.main_image}" alt="Маркер расми" onerror="this.src='https://cdn.dribbble.com/users/1651691/screenshots/5336717/404_v2.png'"/>
 
                     <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
-                        <button id="toggle-currency-btn">${isInUSD ? 'Valyutani tahrirlash UZS' : 'Valyutani tahrirlash USD'}</button>
+                        <button id="toggle-currency-btn">${isInUSD ? 'Валютани таҳрирлаш UZS' : 'Валютани таҳрирлаш USD'}</button>
                         <div>
                             <button class="btn-link" onclick="window.open('https://www.google.com/maps/dir/?api=1&destination=${markerData.lat},${markerData.lng}', '_blank')" style="padding: 5px 10px; margin-left: 5px;">
-                                <i class="fas fa-directions"></i> Directions
+                                <i class="fas fa-directions"></i> Йўналишлар
                             </button>
                             <button class="btn-link" onclick="copyToClipboard('${shareUrl}')" style="padding: 5px 10px; margin-left: 5px;">
-                                <i class="fas fa-share-alt"></i> Share
+                                <i class="fas fa-share-alt"></i> Улашиш
                             </button>
                         </div>
                     </div>
 
-                    <h4 class="custom_sidebar_title"><b>${markerData.property_name || 'No Title'}</b></h4>
+                    <h4 class="custom_sidebar_title"><b>${markerData.property_name || 'Сарлавҳа йўқ'}</b></h4>
 
                     <div class="sidebar-tabs">
-                        <div class="sidebar-tab active" data-tab="basic-info">Basic Info</div>
-                        <div class="sidebar-tab" data-tab="details">Details</div>
-                        <div class="sidebar-tab" data-tab="auction">Auction</div>
-                        <div class="sidebar-tab" data-tab="additional">Additional</div>
+                        <div class="sidebar-tab active" data-tab="basic-info">Асосий маълумот</div>
+                        <div class="sidebar-tab" data-tab="details">Тафсилотлар</div>
+                        <div class="sidebar-tab" data-tab="auction">Аукцион</div>
+                        <div class="sidebar-tab" data-tab="additional">Қўшимча</div>
                     </div>
 
                     <div id="basic-info" class="tab-content active">
                         <table>
                             <tr>
-                                <th class="sidebar_key">Lot raqami</th>
-                                <td>${markerData.lot_number || 'N/A'}</td>
+                                <th class="sidebar_key">Лот рақами</th>
+                                <td>${markerData.lot_number || 'Мавжуд эмас'}</td>
                             </tr>
                             <tr>
-                                <th class="sidebar_key">Manzili</th>
-                                <td>${markerData.address || 'N/A'}</td>
+                                <th class="sidebar_key">Манзили</th>
+                                <td>${markerData.address || 'Мавжуд эмас'}</td>
                             </tr>
                             <tr>
-                                <th class="sidebar_key">Building Type</th>
+                                <th class="sidebar_key">Бино тури</th>
                                 <td>${buildingTypeBadge}</td>
                             </tr>
                             <tr>
-                                <th class="sidebar_key">Kadastr raqami</th>
-                                <td>${markerData.kadastr_raqami || 'N/A'}</td>
+                                <th class="sidebar_key">Бино тури изоҳи</th>
+                                <td>${markerData.building_type_comment}</td>
                             </tr>
                             <tr>
-                                <th class="sidebar_key">Yer maydoni</th>
-                                <td>${markerData.land_area || 'N/A'} m²</td>
+                                <th class="sidebar_key">Кадастр рақами</th>
+                                <td>${markerData.kadastr_raqami || 'Мавжуд эмас'}</td>
                             </tr>
                             <tr>
-                                <th class="sidebar_key">Qurilish maydoni</th>
+                                <th class="sidebar_key">Ер майдони</th>
+                                <td>${markerData.land_area || 'Мавжуд эмас'} м²</td>
+                            </tr>
+                            <tr>
+                                <th class="sidebar_key">Қурилиш майдони</th>
                                 <td>${buildingArea}</td>
                             </tr>
                             ${priceUZS > 0 ? `
-                                                        <tr>
-                                                            <th class="sidebar_key">Boshlang'ich narxi</th>
-                                                            <td id="price-td">${lotPriceFormatted}</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <th class="sidebar_key">1 sotix uchun narx</th>
-                                                            <td>${lotPricePerSotixFormatted}</td>
-                                                        </tr>` : ''}
+                                                                                        <tr>
+                                                                                            <th class="sidebar_key">Бошланғич нархи</th>
+                                                                                            <td id="price-td">${lotPriceFormatted}</td>
+                                                                                        </tr>
+                                                                                        <tr>
+                                                                                            <th class="sidebar_key">1 сотих учун нарх</th>
+                                                                                            <td>${lotPricePerSotixFormatted}</td>
+                                                                                        </tr>` : ''}
                         </table>
                     </div>
 
                     <div id="details" class="tab-content">
                         <table>
                             <tr>
-                                <th class="sidebar_key">Balance Keeper</th>
-                                <td>${markerData.balance_keeper || 'N/A'}</td>
+                                <th class="sidebar_key">Баланс сақловчи</th>
+                                <td>${markerData.balance_keeper || 'Мавжуд эмас'}</td>
                             </tr>
                             <tr>
-                                <th class="sidebar_key">Utilities</th>
+                                <th class="sidebar_key">Коммунал хизматлар</th>
                                 <td>
-                                    <div>Gas: ${gas}</div>
-                                    <div>Water: ${water}</div>
-                                    <div>Electricity: ${electricity}</div>
+                                    <div>Газ: ${gas}</div>
+                                    <div>Сув: ${water}</div>
+                                    <div>Электр: ${electricity}</div>
                                 </td>
                             </tr>
                             <tr>
-                                <th class="sidebar_key">Zone</th>
-                                <td>${markerData.zone || 'N/A'}</td>
+                                <th class="sidebar_key">Зона</th>
+                                <td>${markerData.zone || 'Мавжуд эмас'}</td>
                             </tr>
                             <tr>
-                                <th class="sidebar_key">Coordinates</th>
+                                <th class="sidebar_key">Координаталар</th>
                                 <td>${markerData.lat}, ${markerData.lng}</td>
                             </tr>
                             <tr>
-                                <th class="sidebar_key">Created By</th>
-                                <td>${markerData.user_name || 'N/A'}</td>
+                                <th class="sidebar_key">Яратувчи</th>
+                                <td>${markerData.user_name || 'Мавжуд эмас'}</td>
                             </tr>
                             <tr>
-                                <th class="sidebar_key">Contact Email</th>
-                                <td>${markerData.user_email || 'N/A'}</td>
+                                <th class="sidebar_key">Боғланиш учун электрон почта</th>
+                                <td>${markerData.user_email || 'Мавжуд эмас'}</td>
                             </tr>
                         </table>
                     </div>
@@ -2066,29 +2068,29 @@
                     <div id="auction" class="tab-content">
                         <table>
                             <tr>
-                                <th class="sidebar_key">Auction Date</th>
+                                <th class="sidebar_key">Аукцион санаси</th>
                                 <td>${auctionDate}</td>
                             </tr>
                             <tr>
-                                <th class="sidebar_key">Auction Status</th>
-                                <td>${markerData.auction_status || 'N/A'}</td>
+                                <th class="sidebar_key">Аукцион ҳолати</th>
+                                <td>${markerData.auction_status || 'Мавжуд эмас'}</td>
                             </tr>
                             <tr>
-                                <th class="sidebar_key">Winner Name</th>
-                                <td>${markerData.winner_name || 'N/A'}</td>
+                                <th class="sidebar_key">Ғолиб номи</th>
+                                <td>${markerData.winner_name || 'Мавжуд эмас'}</td>
                             </tr>
                             <tr>
-                                <th class="sidebar_key">Winner Phone</th>
-                                <td>${markerData.winner_phone || 'N/A'}</td>
+                                <th class="sidebar_key">Ғолиб телефони</th>
+                                <td>${markerData.winner_phone || 'Мавжуд эмас'}</td>
                             </tr>
                             ${soldPriceUZS > 0 ? `
-                                                        <tr>
-                                                            <th class="sidebar_key">Sold Price</th>
-                                                            <td>${soldPriceFormatted}</td>
-                                                        </tr>` : ''}
+                                                                                        <tr>
+                                                                                            <th class="sidebar_key">Сотилган нархи</th>
+                                                                                            <td>${soldPriceFormatted}</td>
+                                                                                        </tr>` : ''}
                             <tr>
-                                <th class="sidebar_key">Payment Type</th>
-                                <td>${markerData.payment_type || 'N/A'}</td>
+                                <th class="sidebar_key">Тўлов тури</th>
+                                <td>${markerData.payment_type || 'Мавжуд эмас'}</td>
                             </tr>
                         </table>
                     </div>
@@ -2096,36 +2098,32 @@
                     <div id="additional" class="tab-content">
                         <table>
                             <tr>
-                                <th class="sidebar_key">Investment Amount</th>
-                                <td>${markerData.investment_amount || 'N/A'}</td>
+                                <th class="sidebar_key">Инвестиция миқдори</th>
+                                <td>${markerData.investment_amount || 'Мавжуд эмас'}</td>
                             </tr>
                             <tr>
-                                <th class="sidebar_key">Jobs Created</th>
-                                <td>${markerData.job_creation_count || 'N/A'}</td>
+                                <th class="sidebar_key">Яратилган иш ўринлари</th>
+                                <td>${markerData.job_creation_count || 'Мавжуд эмас'}</td>
                             </tr>
                             <tr>
-                                <th class="sidebar_key">Additional Info</th>
-                                <td><pre style="white-space: pre-wrap; margin: 0;">${markerData.additional_info || 'N/A'}</pre></td>
+                                <th class="sidebar_key">Қўшимча маълумот</th>
+                                <td><pre style="white-space: pre-wrap; margin: 0;">${markerData.additional_info || 'Мавжуд эмас'}</pre></td>
                             </tr>
                         </table>
 
-                        <div id="qr-code-container">
-                            <img src="${qrCodeUrl}" alt="QR Code" />
-                            <a href="${qrCodeUrl}" download="qr-code.svg">Download QR Code</a>
-                        </div>
+
                     </div>
 
                     <div style="margin-top: 15px;">
-                        ${markerData.lot_link ? `<a target="_blank" href="${markerData.lot_link}" class="btn-link"><i class="fas fa-external-link-alt"></i> View External Lot</a>` : ''}
-                        ${markerData.id ? `<a target="_blank" href="${baseUrl}/aktivs/${markerData.id}" class="btn-link"><i class="fas fa-info-circle"></i> View Full Details</a>` : ''}
+                        ${markerData.lot_link ? `<a target="_blank" href="${markerData.lot_link}" class="btn-link"><i class="fas fa-external-link-alt"></i> Ташқи лотни кўриш</a>` : ''}
+                        ${markerData.id ? `<a target="_blank" href="${baseUrl}/aktivs/${markerData.id}" class="btn-link"><i class="fas fa-info-circle"></i> Тўлиқ маълумотларни кўриш</a>` : ''}
 
                         @if (Auth::check())
-                        ${markerData.id ? `<a target="_blank" href="${baseUrl}/aktivs/${markerData.id}/edit" class="btn-link"><i class="fas fa-edit"></i> Edit</a>` : ''}
+                        ${markerData.id ? `<a target="_blank" href="${baseUrl}/aktivs/${markerData.id}/edit" class="btn-link"><i class="fas fa-edit"></i> Таҳрирлаш</a>` : ''}
                         @endif
                     </div>
                 </div>
             `;
-
             // Add event listeners to tabs
             const tabButtons = sidebar.querySelectorAll('.sidebar-tab');
             tabButtons.forEach(button => {

@@ -26,7 +26,7 @@ class CreateAktivsTable extends Migration
             $table->decimal('land_area', 10, 2)->default(0);
             $table->decimal('building_area', 10, 2)->nullable();
             $table->enum('building_type', ['yer', 'TurarBino', 'NoturarBino'])->default('yer');
-
+            $table->text('building_type_comment')->nullable();
             // Auction and price information
             $table->decimal('start_price', 20, 2)->nullable();
             $table->decimal('sold_price', 20, 2)->nullable();
@@ -39,8 +39,8 @@ class CreateAktivsTable extends Migration
             $table->string('zone')->nullable();
             $table->string('kadastr_raqami')->nullable();
             $table->string('geolokatsiya')->nullable();
-            $table->decimal('latitude', 10, 7);
-            $table->decimal('longitude', 10, 7);
+            $table->integer('latitude');
+            $table->integer('longitude');
 
             // Additional information
             $table->string('gas')->default('Yes');

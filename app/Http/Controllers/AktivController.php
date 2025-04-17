@@ -700,19 +700,20 @@ class AktivController extends Controller
     // map code with source data
 
 
+
     // public function getLots()
     // {
     //     // Check if the authenticated user is the Super Admin (user_id = 1)
     //     $isSuperAdmin = auth()->id() === 1;
+
+
 
     //     if ($isSuperAdmin) {
     //         // Super Admin sees all aktivs
     //         $aktivs = Aktiv::with(['files', 'user'])->get();
     //     } else {
     //         // Other users should not see aktivs created by the Super Admin (user_id = 1)
-    //         $aktivs = Aktiv::with(['files', 'user'])
-    //             // ->where('user_id', '!=', 1)  // Exclude records created by the Super Admin
-    //             ->get();
+    //         $aktivs = Aktiv::with(['files', 'user'])->get();
     //     }
 
     //     // Define the default image in case there is no image
@@ -720,84 +721,102 @@ class AktivController extends Controller
 
     //     // Map the aktivs to the required format
     //     $lots = $aktivs->map(function ($aktiv) use ($defaultImage) {
-    //         // Determine the main image URL
-    //         $mainImagePath = $aktiv->files->first() ? 'storage/' . $aktiv->files->first()->path : null;
-    //         $mainImageUrl = $mainImagePath && file_exists(public_path($mainImagePath))
-    //             ? asset($mainImagePath)
-    //             : $defaultImage;
+    //         if (!isset($aktiv->latitude) && !isset($aktiv->longitude)) {
+    //             return null; // Skip if latitude or longitude is null
+    //         } else {
+    //             // Determine the main image URL
+    //             $mainImagePath = $aktiv->files->first() ? 'storage/' . $aktiv->files->first()->path : null;
+    //             $mainImageUrl = $mainImagePath && file_exists(public_path($mainImagePath))
+    //                 ? asset($mainImagePath)
+    //                 : ($aktiv->main_image ?: $defaultImage);
 
-    //         // Return the necessary data
-    //         return [
-    //             'lat' => $aktiv->latitude,
-    //             'lng' => $aktiv->longitude,
-    //             'property_name' => $aktiv->object_name,
-    //             'main_image' => $mainImageUrl,
-    //             'land_area' => $aktiv->land_area,
-    //             'start_price' => $aktiv->start_price ?? 0,
-    //             'lot_link' => route('aktivs.show', $aktiv->id),
-    //             'lot_number' => $aktiv->id,
-    //             'address' => $aktiv->location,
-    //             'user_name' => $aktiv->user ? $aktiv->user->name : 'N/A',
-    //             'user_email' => $aktiv->user ? $aktiv->user->email : 'N/A',
-    //             'building_type' => $aktiv->building_type // Include building_type
-
-    //         ];
+    //             // Return the necessary data
+    //             return [
+    //                 'lat' => $aktiv->latitude,
+    //                 'lng' => $aktiv->longitude,
+    //                 'property_name' => $aktiv->object_name,
+    //                 'main_image' => $mainImageUrl,
+    //                 'land_area' => $aktiv->land_area,
+    //                 'start_price' => $aktiv->start_price ?? 0,
+    //                 'lot_link' => $aktiv->lot_link ?? route('aktivs.show', $aktiv->id),
+    //                 'lot_number' => $aktiv->lot_number ?? $aktiv->id,
+    //                 'address' => $aktiv->location,
+    //                 'user_name' => $aktiv->user ? $aktiv->user->name : 'N/A',
+    //                 'user_email' => $aktiv->user ? $aktiv->user->email : 'N/A',
+    //                 'building_type' => $aktiv->building_type,
+    //                 'kadastr_raqami' => $aktiv->kadastr_raqami,
+    //                 'winner_name' => $aktiv->winner_name,
+    //                 'winner_phone' => $aktiv->winner_phone,
+    //                 'sold_price' => $aktiv->sold_price ?? 0,
+    //                 'auction_date' => $aktiv->auction_date ? $aktiv->auction_date->format('Y-m-d') : null,
+    //             ];
+    //         }
     //     });
 
     //     // Return the response as JSON
     //     return response()->json(['lots' => $lots]);
     // }
 
+
     public function getLots()
     {
-        // Check if the authenticated user is the Super Admin (user_id = 1)
-        $isSuperAdmin = auth()->id() === 1;
+        // Cache the results for 1 hour (3600 seconds)
+        $cacheKey = 'lots_data_' . auth()->id();
 
-        if ($isSuperAdmin) {
-            // Super Admin sees all aktivs
-            $aktivs = Aktiv::with(['files', 'user'])->get();
-        } else {
-            // Other users should not see aktivs created by the Super Admin (user_id = 1)
-            $aktivs = Aktiv::with(['files', 'user'])->get();
-        }
+        return Cache::remember($cacheKey, 3600, function () {
+            // Check if the authenticated user is the Super Admin (user_id = 1)
+            $isSuperAdmin = auth()->id() === 1;
 
-        // Define the default image in case there is no image
-        $defaultImage = 'https://cdn.dribbble.com/users/1651691/screenshots/5336717/404_v2.png';
+            if ($isSuperAdmin) {
+                // Super Admin sees all aktivs
+                $aktivs = Aktiv::with(['files', 'user'])->get();
+            } else {
+                // Other users should not see aktivs created by the Super Admin (user_id = 1)
+                $aktivs = Aktiv::with(['files', 'user'])->get();
+            }
 
-        // Map the aktivs to the required format
-        $lots = $aktivs->map(function ($aktiv) use ($defaultImage) {
-            // Determine the main image URL
-            $mainImagePath = $aktiv->files->first() ? 'storage/' . $aktiv->files->first()->path : null;
-            $mainImageUrl = $mainImagePath && file_exists(public_path($mainImagePath))
-                ? asset($mainImagePath)
-                : ($aktiv->main_image ?: $defaultImage);
+            // Define the default image in case there is no image
+            $defaultImage = 'https://cdn.dribbble.com/users/1651691/screenshots/5336717/404_v2.png';
 
-            // Return the necessary data
-            return [
-                'lat' => $aktiv->latitude,
-                'lng' => $aktiv->longitude,
-                'property_name' => $aktiv->object_name,
-                'main_image' => $mainImageUrl,
-                'land_area' => $aktiv->land_area,
-                'start_price' => $aktiv->start_price ?? 0,
-                'lot_link' => $aktiv->lot_link ?? route('aktivs.show', $aktiv->id),
-                'lot_number' => $aktiv->lot_number ?? $aktiv->id,
-                'address' => $aktiv->location,
-                'user_name' => $aktiv->user ? $aktiv->user->name : 'N/A',
-                'user_email' => $aktiv->user ? $aktiv->user->email : 'N/A',
-                'building_type' => $aktiv->building_type,
-                'kadastr_raqami' => $aktiv->kadastr_raqami,
-                'winner_name' => $aktiv->winner_name,
-                'winner_phone' => $aktiv->winner_phone,
-                'sold_price' => $aktiv->sold_price ?? 0,
-                'auction_date' => $aktiv->auction_date ? $aktiv->auction_date->format('Y-m-d') : null,
-            ];
+            // Map the aktivs to the required format
+            $lots = $aktivs->map(function ($aktiv) use ($defaultImage) {
+                if (!isset($aktiv->latitude) && !isset($aktiv->longitude)) {
+                    return null; // Skip if latitude or longitude is null
+                } else {
+                    // Determine the main image URL
+                    $mainImagePath = $aktiv->files->first() ? 'storage/' . $aktiv->files->first()->path : null;
+                    $mainImageUrl = $mainImagePath && file_exists(public_path($mainImagePath))
+                        ? asset($mainImagePath)
+                        : ($aktiv->main_image ?: $defaultImage);
+
+                    // Return the necessary data
+                    return [
+                        'lat' => $aktiv->latitude,
+                        'lng' => $aktiv->longitude,
+                        'property_name' => $aktiv->object_name,
+                        'main_image' => $mainImageUrl,
+                        'land_area' => $aktiv->land_area,
+                        'start_price' => $aktiv->start_price ?? 0,
+                        'lot_link' => $aktiv->lot_link ?? route('aktivs.show', $aktiv->id),
+                        'lot_number' => $aktiv->lot_number ?? $aktiv->id,
+                        'address' => $aktiv->location,
+                        'user_name' => $aktiv->user ? $aktiv->user->name : 'N/A',
+                        'user_email' => $aktiv->user ? $aktiv->user->email : 'N/A',
+                        'building_type' => $aktiv->building_type,
+                        'building_type_comment' => $aktiv->building_type_comment,
+                        'kadastr_raqami' => $aktiv->kadastr_raqami,
+                        'winner_name' => $aktiv->winner_name,
+                        'winner_phone' => $aktiv->winner_phone,
+                        'sold_price' => $aktiv->sold_price ?? 0,
+                        'auction_date' => $aktiv->auction_date ? $aktiv->auction_date->format('Y-m-d') : null,
+                    ];
+                }
+            });
+
+            // Return the response as JSON - we return this from the cache closure
+            return response()->json(['lots' => $lots]);
         });
-
-        // Return the response as JSON
-        return response()->json(['lots' => $lots]);
     }
-
     /**
      * Extract price information from additional info text
      *
