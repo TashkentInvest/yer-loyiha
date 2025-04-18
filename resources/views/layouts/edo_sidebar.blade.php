@@ -13,14 +13,15 @@
     </div>
     <div class="sidebar-body">
         <ul class="nav">
-
-            <li class="nav-item nav-category">Dashboard</li>
-            @if (auth()->user()->roles[0]->name == 'Super Admin')
-                {{-- <li class="pc-item">
-                <a class="nav-link" href="{{ route('aktivs.kadastr_index') }}">
-                    Кадастр
+            <li class="nav-item">
+                <a href="{{ route('aktivs.myMap') }}" class="nav-link">
+                    <i class="link-icon" data-feather="map"></i>
+                    <span class="link-title">Харита</span>
                 </a>
-            </li> --}}
+            </li>
+
+            {{-- <li class="nav-item nav-category">Dashboard</li>
+            @if (auth()->user()->roles[0]->name == 'Super Admin')
 
                 <li class="nav-item">
                     <a href="{{ route('userIndex') }}" class="nav-link">
@@ -92,7 +93,7 @@
                         <button type="submit" class="btn btn-primary my-3">Excel</button>
                     </form>
                 </li>
-            @endif
+            @endif --}}
 
 
 

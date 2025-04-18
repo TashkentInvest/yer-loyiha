@@ -5,6 +5,13 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use Illuminate\Support\Facades\Artisan;
+use App\Models\Aktiv;
+use App\Models\User;
+use App\Models\Street;
+use App\Models\Comment;
+use Illuminate\Support\Facades\DB;
+use Carbon\Carbon;
+
 
 class HomeController extends Controller
 {
@@ -28,7 +35,6 @@ class HomeController extends Controller
     {
         return view('home');
     }
-
 
 
 

@@ -16,7 +16,7 @@ use App\Http\Controllers\Blade\RegionController;
 use App\Http\Controllers\ConstructionController;
 use App\Http\Controllers\Blade\DistrictController;
 use App\Http\Controllers\CommentController;
-
+use App\Http\Controllers\DashboardController;
 
 // Default laravel auth routes
 Auth::routes(['register' => false]);
@@ -30,6 +30,7 @@ Route::post('/admin/cache-action', [AktivController::class, 'handleCacheAction']
 
 
 Route::get('/home', [HomeController::class, 'index'])->name('home');
+Route::get('/dashboard', [DashboardController::class, 'dashboard'])->name('dashboard');
 Route::get('/statistics', [HomeController::class, 'statistics'])->name('statistics.show');
 Route::get('/statistics', [HomeController::class, 'statistics'])->name('statistics.index');
 
