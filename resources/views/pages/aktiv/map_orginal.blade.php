@@ -2448,6 +2448,10 @@
 
                     <div id="basic-info" class="tab-content active">
                         <table>
+     <tr>
+                                <th class="sidebar_key">Уникал рақами</th>
+                                <td>${markerData.kadastr_raqami || 'Мавжуд эмас'}</td>
+                            </tr>
                             <tr>
                                 <th class="sidebar_key">Лот рақами</th>
                                 <td>${markerData.lot_number || 'Мавжуд эмас'}</td>
@@ -2458,31 +2462,25 @@
                             </tr>
                             <tr>
                                 <th class="sidebar_key">Бино тури</th>
-                                <td>${buildingTypeBadge}</td>
+                                <td>${buildingTypeBadge || 'Мавжуд эмас'}</td>
                             </tr>
                             <tr>
                                 <th class="sidebar_key">Фаолият Тури</th>
-                                <td>${markerData.building_type_comment}</td>
+                                <td>${markerData.building_type_comment || 'Мавжуд эмас'}</td>
                             </tr>
-                            <tr>
-                                <th class="sidebar_key">Кадастр рақами</th>
-                                <td>${markerData.kadastr_raqami || 'Мавжуд эмас'}</td>
-                            </tr>
+
                             <tr>
                                 <th class="sidebar_key">Ер майдони</th>
                                 <td>${markerData.land_area || 'Мавжуд эмас'} га</td>
                             </tr>
 
                             <tr>
-                                <th class="sidebar_key">Ер майдони</th>
+                                <th class="sidebar_key">Фойдаланишга топшириш муддати</th>
                                 <td>
                                     ${markerData.land_area_comment ? `<span class="land-area-timeframe">(Муддати: ${markerData.land_area_comment || 'Мавжуд эмас'})</span>` : ''}
                                 </td>
                             </tr>
-                                <tr>
-                                <th class="sidebar_key">Зона</th>
-                                <td>${markerData.zone || 'Мавжуд эмас'} га</td>
-                            </tr>
+
 
                         </table>
                     </div>
@@ -2490,8 +2488,8 @@
                     <div id="details" class="tab-content">
                         <table>
                             <tr>
-                                <th class="sidebar_key">Баланс сақловчи</th>
-                                <td>${markerData.balance_keeper || 'Мавжуд эмас'}</td>
+                                <th class="sidebar_key">Ҳудуд</th>
+                                <td>${markerData.address || 'Мавжуд эмас'}</td>
                             </tr>
                             <tr>
                                 <th class="sidebar_key">Коммунал хизматлар</th>
@@ -2528,7 +2526,7 @@
                             </tr>
                             <tr>
                                 <th class="sidebar_key">Аукцион ҳолати</th>
-                                <td>${markerData.auction_status || 'Мавжуд эмас'}</td>
+                                <td>Сотилган</td>
                             </tr>
                             <tr>
                                 <th class="sidebar_key">Ғолиб номи</th>
@@ -2687,7 +2685,7 @@
             let currentHighlight = null;
 
             const defaultColor = 'lightgreen';
-            const highlightColor = '#EEF5FF';
+            const highlightColor = '#ee6b6e';
 
             const kmlFileNames = [
                 'bektemir.xml', 'chilonzor.xml', 'mirabod.xml', 'mirzo_ulugbek.xml', 'olmazor.xml',
