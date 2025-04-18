@@ -847,7 +847,7 @@ class AktivController extends Controller
                 //     Log::error('Error extracting price from additional info: ' . $e->getMessage());
                 //     $sold_price = 0; // Default value in case of error
                 // }
-            $currentDate = Carbon::now();
+                $currentDate = Carbon::now();
 
                 $auction_date_status = null;
                 if ($aktiv->auction_date) {
@@ -857,10 +857,10 @@ class AktivController extends Controller
 
                     if ($diffInDays > 0) {
                         // Auction is in the future
-                        $auction_date_status = $diffInDays . " кун қолди" . ($diffInMonth > 0 ? " (" . $diffInMonth . " ой)" : "");
+                        $auction_date_status = ($diffInMonth > 0 ? " (" . $diffInMonth . " ой)" : "") . ' ' . $diffInDays . " кун қолди";
                     } elseif ($diffInDays < 0) {
                         // Auction is in the past
-                        $auction_date_status = abs($diffInDays) . " кун олдин" . ($diffInMonth < 0 ? " (" . abs($diffInMonth) . " ой)" : "");
+                        $auction_date_status = ($diffInMonth < 0 ? " (" . abs($diffInMonth) . " ой)" : "") . ' ' . abs($diffInDays) . " кун олдин";
                     } else {
                         // Auction is today
                         $auction_date_status = "Бугун";
@@ -890,6 +890,8 @@ class AktivController extends Controller
                     'zone' => $aktiv->zone ?? '',
                     'auction_date' => $aktiv->auction_date ? $aktiv->auction_date->format('Y-m-d') : null,
                     'auction_date_status' => $auction_date_status ?? null,
+                    'payment_type' => $aktiv->payment_type ?? null,
+
                 ];
             })->filter(function ($value) {
                 return !is_null($value);
