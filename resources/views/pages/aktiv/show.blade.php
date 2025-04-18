@@ -196,40 +196,6 @@
         </div>
     @endif
 
-    {{-- Comments Section --}}
-    <div class="comments mt-4">
-        <h3 class="text-primary">Comments</h3>
-
-        {{-- Display comments --}}
-        <div class="comments-container">
-            @foreach ($aktiv->comments as $comment)
-                <div class="comment-item mb-3 {{ $comment->user_id === auth()->id() ? 'my-comment' : '' }}">
-                    <div class="d-flex justify-content-between align-items-center">
-                        <strong class="comment-author">{{ $comment->user->name }}</strong>
-                        <small class="text-muted">{{ $comment->created_at->diffForHumans() }}</small>
-                    </div>
-                    <div class="comment-content bg-light p-3 rounded mt-2">
-                        <p>{{ $comment->content }}</p>
-                    </div>
-                </div>
-            @endforeach
-        </div>
-
-        {{-- Add comment --}}
-        @auth
-            <form action="{{ route('comments.store', $aktiv->id) }}" method="POST" class="mt-4">
-                @csrf
-                <div class="form-group">
-                    <label for="content">Add Comment</label>
-                    <textarea id="content" name="content" class="form-control" rows="3" placeholder="Write your comment..."
-                        required></textarea>
-                </div>
-                <button type="submit" class="btn btn-primary mt-2">Post Comment</button>
-            </form>
-        @endauth
-    </div>
-
-
 
 
     {{-- Add some styling --}}
