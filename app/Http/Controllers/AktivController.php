@@ -11,13 +11,46 @@ use App\Models\SubStreet;
 use App\Models\User;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Http;
 use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Support\Facades\Log;
 
 class AktivController extends Controller
 {
+    public function handleCacheAction(Request $request)
+    {
+        // dd($request->all());
+        $action = $request->input('action');
 
+        switch ($action) {
+            case 'optimize':
+                Artisan::call('optimize');
+                break;
+
+            case 'clear':
+                Artisan::call('optimize:clear');
+                Artisan::call('view:clear');
+                Artisan::call('route:clear');
+                Artisan::call('config:clear');
+                Artisan::call('cache:clear');
+                break;
+
+            default:
+                return back()->with('error', 'Нотўғри амал киритилди.');
+        }
+
+        return back()->with('success', 'Кеш ' . 'муваффақиятли '. $this->getActionNameInUzbek($action) . '.');
+    }
+    private function getActionNameInUzbek($action)
+    {
+        $actionNames = [
+            'optimize' => 'оптималлаштирилди',
+            'clear' => 'тозаланди'
+        ];
+
+        return $actionNames[$action] ?? $action;
+    }
     public function status_invest_moderator(Request $request)
     {
         // Find and update the record

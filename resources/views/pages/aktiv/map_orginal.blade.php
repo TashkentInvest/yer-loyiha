@@ -99,13 +99,96 @@
 
         .pc-header .header-wrapper {
             padding: 0px 20px;
+            display: flex;
+            align-items: center;
+            height: 100%;
         }
 
         .pc-header .pc-head-link,
         .pc-header .dropdown-toggle {
             color: white !important;
+            font-weight: 500;
+            transition: all 0.3s ease;
         }
 
+        .pc-header .pc-head-link:hover,
+        .pc-header .dropdown-toggle:hover {
+            color: rgba(255, 255, 255, 0.85) !important;
+            transform: translateY(-2px);
+        }
+
+        .header-title-text {
+            color: white;
+            font-weight: 600;
+            font-size: 1.15rem;
+            margin-left: 15px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+            padding: 5px 15px;
+            border-left: 2px solid rgba(255, 255, 255, 0.5);
+        }
+
+        #xml-selector {
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            background-color: rgba(255, 255, 255, 0.15);
+            color: white;
+            font-weight: 500;
+            padding: 6px 32px 6px 12px;
+            transition: all 0.3s ease;
+        }
+
+        #xml-selector:focus {
+            box-shadow: 0 0 0 0.25rem rgba(255, 255, 255, 0.25);
+            background-color: rgba(255, 255, 255, 0.25);
+        }
+
+        #xml-selector option {
+            background-color: white;
+            color: var(--primary-color);
+        }
+
+        .user-welcome {
+            display: flex;
+            align-items: center;
+            font-weight: 500;
+        }
+
+        .user-welcome i {
+            margin-right: 5px;
+            font-size: 1.1rem;
+        }
+
+        .btn-outline-light {
+            border-radius: 20px;
+            font-weight: 500;
+            border-width: 2px;
+            padding: 5px 15px;
+            transition: all 0.3s ease;
+        }
+
+        .btn-outline-light:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .dropdown-menu {
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            border: none;
+            padding: 8px;
+        }
+
+        .dropdown-item {
+            border-radius: 5px;
+            padding: 8px 15px;
+            transition: all 0.2s ease;
+        }
+
+        .dropdown-item i {
+            margin-right: 8px;
+        }
 
 
 
@@ -984,109 +1067,496 @@
         <div class="bar"></div>
     </div>
 
+
     <!-- Sidebar -->
     <nav class="pc-sidebar">
         <div class="navbar-wrapper">
             <div class="m-header">
                 <a href="{{ route('aktivs.index') }}" class="b-brand text-primary">
                     <img src="{{ asset('assets/projects-map/images/logo.png') }}" class="img-fluid logo-lg custom_logo"
-                        alt="Toshkent Invest Logo" />
-                    {{-- <span class="official-badge">Official</span> --}}
+                        alt="Тошкент Инвест логотипи" />
+                    <span class="official-badge">Расмий</span>
                 </a>
             </div>
             <div class="navbar-content px-3" data-simplebar>
-
                 <!-- District Information -->
-                <div id="district-info">
-                    <div id="district-name">Тошкент</div>
-                    <table id="info-table" class="table">
+                <div id="district-info" class="district-info-card">
+                    <div id="district-name" class="district-title">Тошкент</div>
+                    <table id="info-table" class="table info-table">
                         <thead>
                             <tr>
-                                <th colspan="2">Асосий маълумот</th>
+                                <th colspan="2" class="info-header">Асосий маълумот</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td><i class="fas fa-map-marked"></i> Майдони</td>
-                                <td id="maydoni">43.5 км²</td>
+                            <tr class="info-row">
+                                <td class="info-label"><i class="fas fa-map-marked"></i> Майдони</td>
+                                <td id="maydoni" class="info-value">43.5 км²</td>
                             </tr>
-                            <tr>
-                                <td><i class="fas fa-users"></i> Аҳолиси</td>
-                                <td id="aholiSoni">3 млн</td>
+                            <tr class="info-row">
+                                <td class="info-label"><i class="fas fa-users"></i> Аҳолиси</td>
+                                <td id="aholiSoni" class="info-value">3 млн</td>
                             </tr>
-                            <tr>
-                                <td><i class="fas fa-city"></i> Туманлар</td>
-                                <td id="TumanlarSoni">12</td>
+                            <tr class="info-row">
+                                <td class="info-label"><i class="fas fa-city"></i> Туманлар</td>
+                                <td id="TumanlarSoni" class="info-value">12</td>
                             </tr>
-                            <tr>
-                                <td><i class="fas fa-home"></i> Маҳаллалар</td>
-                                <td id="MahallaSoni">585</td>
+                            <tr class="info-row">
+                                <td class="info-label"><i class="fas fa-home"></i> Маҳаллалар</td>
+                                <td id="MahallaSoni" class="info-value">585</td>
                             </tr>
-                            <tr>
-                                <td><i class="fas fa-building"></i> Объектлар</td>
-                                <td id="savdodaTurganJamiSoni">-</td>
+                            <tr class="info-row">
+                                <td class="info-label"><i class="fas fa-building"></i> Объектлар</td>
+                                <td id="savdodaTurganJamiSoni" class="info-value badge-highlight">-</td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
 
-                {{-- <ul class="pc-navbar">
-                    <li class="pc-item pc-caption"><label>Объект турлари</label></li>
-                    <li class="pc-item">
-                        <div class="legend-item" style="display: flex; align-items: center; gap: 8px;">
-                            <span class="legend-marker red"></span>
-                            <span class="legend-text" style="font-size: 14px; color: #333;">Ер участкалари</span>
-                        </div>
-                    </li>
-                    <li class="pc-item">
-                        <div class="legend-item" style="display: flex; align-items: center; gap: 8px;">
-                            <span class="legend-marker yellow"></span>
-                            <span class="legend-text" style="font-size: 14px; color: #333;">Турар-жой бинолари</span>
-                        </div>
-                    </li>
-                    <li class="pc-item">
-                        <div class="legend-item" style="display: flex; align-items: center; gap: 8px;">
-                            <span class="legend-marker blue"></span>
-                            <span class="legend-text" style="font-size: 14px; color: #333;">Тижорат
-                                объектлари</span>
-                        </div>
-                    </li>
-                </ul> --}}
-
                 @if (Auth::check())
-                    <ul class="pc-navbar">
-                        <li class="pc-item pc-caption"><label>Бошқарув</label></li>
+                    <ul class="pc-navbar admin-menu">
+                        <li class="pc-item pc-caption"><label class="menu-category">Бошқарув</label></li>
                         <li class="pc-item">
-                            <a href="{{ route('aktivs.create') }}" class="pc-link">
-                                <i class="fas fa-plus-circle"></i>
+                            <a href="{{ route('aktivs.create') }}" class="pc-link menu-item">
+                                <i class="fas fa-plus-circle menu-icon"></i>
                                 <span>Объект қўшиш</span>
                             </a>
                         </li>
                         <li class="pc-item">
-                            <a href="#" id="importExcelBtn" class="pc-link">
-                                <i class="fas fa-file-excel"></i>
+                            <a href="#" id="importExcelBtn" class="pc-link menu-item">
+                                <i class="fas fa-file-excel menu-icon"></i>
                                 <span>Excel дан импорт</span>
                             </a>
                         </li>
                         <li class="pc-item">
-                            <a href="/dashboard" class="pc-link">
-                                <i class="fas fa-tachometer-alt"></i>
+                            <a href="/dashboard" class="pc-link menu-item">
+                                <i class="fas fa-tachometer-alt menu-icon"></i>
                                 <span>Бошқарув панели</span>
                             </a>
                         </li>
                     </ul>
                 @endif
 
-                <div class="mt-4">
-                    <p class="text-center text-muted small" style="font-weight:bold;">© {{ date('Y') }}
-                        TeamDev.uz</p>
-                    <p class="text-center text-muted small">Охирги янгиланиш: 2025-04-16 13:07:11</p>
+                <div class="ms-auto admin-controls">
+
+                    <ul class="list-unstyled admin-actions">
+                        @if (session('success'))
+                            <div class="alert alert-success fade-in">
+                                <i class="fas fa-check-circle"></i> {{ session('success') }}
+                            </div>
+                        @endif
+
+                        @if (session('error'))
+                            <div class="alert alert-danger fade-in">
+                                <i class="fas fa-exclamation-circle"></i> {{ session('error') }}
+                            </div>
+                        @endif
+
+                        <form method="POST" action="{{ route('admin.cache.action') }}" class="cache-form">
+                            @csrf
+                            <button type="submit" name="action" value="clear"
+                                class="btn btn-danger cache-clear-btn">
+                                <i class="fas fa-trash-alt"></i> Кешни тозалаш
+                            </button>
+                        </form>
+                    </ul>
+                </div>
+
+                <div class="footer-content">
+                    <div class="copyright">
+                        <span class="copyright-icon">©</span> {{ date('Y') }} <span
+                            class="brand-name">TeamDev.uz</span>
+                    </div>
+                    <div class="update-info">
+                        <i class="fas fa-history"></i> Охирги янгиланиш: 2025-04-18 06:25:30
+                    </div>
                 </div>
             </div>
         </div>
     </nav>
 
+    <style>
+        /* Light Theme Sidebar Styling */
+        :root {
+            --primary-rgb: 0, 123, 255;
+            --primary-color: #007bff;
+            --secondary-color: #6610f2;
+            --text-dark: #333;
+            --text-medium: #555;
+            --text-light: #777;
+            --border-color: #e0e0e0;
+            --hover-bg: #f0f7ff;
+        }
+
+        .pc-sidebar {
+            background: #ffffff;
+            box-shadow: 1px 0 10px rgba(0, 0, 0, 0.05);
+            border-right: 1px solid var(--border-color);
+        }
+
+        .navbar-wrapper {
+            padding: 10px 0;
+        }
+
+        .m-header {
+            padding: 15px 20px;
+            border-bottom: 1px solid var(--border-color);
+            margin-bottom: 15px;
+            display: flex;
+            justify-content: center;
+            position: relative;
+        }
+
+        .custom_logo {
+            /* max-height: 52px; */
+            transition: transform 0.3s ease;
+        }
+
+        .custom_logo:hover {
+            transform: scale(1.05);
+        }
+
+        .official-badge {
+            position: absolute;
+            top: 8px;
+            right: 20px;
+            background-color: var(--primary-color);
+            color: white;
+            font-size: 0.65rem;
+            padding: 2px 8px;
+            border-radius: 10px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        /* District Info Card */
+        .district-info-card {
+            background: #f8faff;
+            border-radius: 12px;
+            margin: 10px 0 20px;
+            padding: 15px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+            border: 1px solid var(--border-color);
+            overflow: hidden;
+        }
+
+        .district-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--primary-color);
+            text-align: center;
+            margin-bottom: 10px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .info-table {
+            margin-bottom: 0;
+        }
+
+        .info-table thead {
+            background: rgba(var(--primary-rgb), 0.1);
+        }
+
+        .info-header {
+            font-size: 0.9rem;
+            color: var(--text-dark);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            text-align: center;
+            padding: 8px;
+            font-weight: 600;
+        }
+
+        .info-row {
+            border-bottom: 1px dashed var(--border-color);
+            transition: background-color 0.2s ease;
+        }
+
+        .info-row:hover {
+            background-color: var(--hover-bg);
+        }
+
+        .info-row:last-child {
+            border-bottom: none;
+        }
+
+        .info-label {
+            color: var(--text-medium);
+            font-size: 0.85rem;
+            padding: 8px 10px;
+            vertical-align: middle;
+        }
+
+        .info-label i {
+            margin-right: 8px;
+            color: var(--primary-color);
+            width: 16px;
+            text-align: center;
+        }
+
+        .info-value {
+            color: var(--text-dark);
+            font-weight: 500;
+            font-size: 0.9rem;
+            padding: 8px 10px;
+            text-align: right;
+            vertical-align: middle;
+        }
+
+        .badge-highlight {
+            background: rgba(var(--primary-rgb), 0.1);
+            border-radius: 4px;
+            padding: 3px 8px;
+            font-weight: 600;
+        }
+
+        /* Admin Menu */
+        .admin-menu {
+            margin-top: 5px;
+            margin-bottom: 15px;
+        }
+
+        .menu-category {
+            color: var(--primary-color);
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+            font-weight: 600;
+            text-transform: uppercase;
+            padding: 10px 0;
+            margin-bottom: 5px;
+        }
+
+        .menu-item {
+            display: flex;
+            align-items: center;
+            padding: 10px 15px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            margin-bottom: 5px;
+            color: var(--text-medium) !important;
+        }
+
+        .menu-item:hover {
+            background: var(--hover-bg);
+            color: var(--primary-color) !important;
+            transform: translateX(3px);
+        }
+
+        .menu-icon {
+            margin-right: 10px;
+            width: 20px;
+            text-align: center;
+            color: var(--primary-color);
+            font-size: 1rem;
+        }
+
+        /* Admin Controls - Light Theme */
+        .admin-controls {
+            display: flex;
+            flex-direction: column;
+            padding: 10px 15px;
+            background-color: #f0f7ff;
+            border-radius: 10px;
+            margin: 8px 0;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+            border: 1px solid rgba(var(--primary-rgb), 0.2);
+        }
+
+        .admin-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid rgba(var(--primary-rgb), 0.1);
+        }
+
+        .date-time,
+        .user-info {
+            display: flex;
+            align-items: center;
+            font-size: 0.85rem;
+            font-weight: 500;
+            padding: 4px 8px;
+            background-color: rgba(var(--primary-rgb), 0.1);
+            border-radius: 6px;
+            color: var(--text-dark);
+        }
+
+        .date-time i,
+        .user-info i {
+            margin-right: 6px;
+            color: var(--primary-color);
+        }
+
+        .date {
+            margin-right: 5px;
+        }
+
+        .time {
+            font-family: monospace;
+            background-color: rgba(var(--primary-rgb), 0.2);
+            padding: 2px 4px;
+            border-radius: 4px;
+        }
+
+        .user-info {
+            margin-left: 10px;
+            background-color: rgba(var(--primary-rgb), 0.15);
+        }
+
+        .admin-actions {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            width: 100%;
+        }
+
+        .alert {
+            padding: 8px 12px;
+            border-radius: 6px;
+            margin: 0;
+            font-size: 0.85rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .alert i {
+            margin-right: 8px;
+        }
+
+        .fade-in {
+            animation: fadeIn 0.3s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .cache-form {
+            display: flex;
+            justify-content: center;
+        }
+
+        .cache-clear-btn {
+            background: linear-gradient(135deg, #dc3545, #c82333);
+            border: none;
+            border-radius: 6px;
+            padding: 8px 15px;
+            font-weight: 500;
+            text-transform: uppercase;
+            font-size: 0.8rem;
+            letter-spacing: 0.5px;
+            box-shadow: 0 2px 5px rgba(220, 53, 69, 0.3);
+            transition: all 0.3s ease;
+            width: 100%;
+            color: white;
+        }
+
+        .cache-clear-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(220, 53, 69, 0.4);
+            background: linear-gradient(135deg, #e04b59, #d32f2f);
+        }
+
+        .cache-clear-btn:active {
+            transform: translateY(1px);
+            box-shadow: 0 1px 3px rgba(220, 53, 69, 0.4);
+        }
+
+        .cache-clear-btn i {
+            margin-right: 6px;
+        }
+
+        /* Footer Content */
+        .footer-content {
+            margin-top: 20px;
+            padding: 15px 0;
+            border-top: 1px solid var(--border-color);
+            text-align: center;
+        }
+
+        .copyright {
+            color: var(--text-light);
+            font-size: 0.85rem;
+            margin-bottom: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .copyright-icon {
+            font-size: 1rem;
+            margin-right: 4px;
+            margin-top: -2px;
+        }
+
+        .brand-name {
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-left: 3px;
+        }
+
+        .update-info {
+            color: var(--text-light);
+            font-size: 0.75rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .update-info i {
+            margin-right: 4px;
+            font-size: 0.7rem;
+        }
+
+        /* Scrollbar Styling */
+        [data-simplebar]::-webkit-scrollbar {
+            width: 6px;
+            background-color: #f5f5f5;
+        }
+
+        [data-simplebar]::-webkit-scrollbar-thumb {
+            background-color: rgba(var(--primary-rgb), 0.5);
+            border-radius: 10px;
+        }
+
+        [data-simplebar]::-webkit-scrollbar-thumb:hover {
+            background-color: rgba(var(--primary-rgb), 0.7);
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 992px) {
+            .district-title {
+                font-size: 1.2rem;
+            }
+
+            .info-label,
+            .info-value {
+                font-size: 0.8rem;
+                padding: 6px 8px;
+            }
+        }
+
+        .pc-header .pc-head-link,
+        .pc-header .dropdown-toggle {
+            background: #fff !important;
+
+        }
+    </style>
     <!-- Header -->
+
     <header class="pc-header">
         <div class="header-wrapper">
             <div class="me-auto pc-mob-drp">
@@ -1103,54 +1573,30 @@
                     </li>
                     <li class="pc-h-item">
                         <select id="xml-selector" class="form-select form-control">
-                            <option id="testTashkent" value="tashkent">Toshkent shahri</option>
-                            <option value="bektemir.xml">Bektemir</option>
-                            <option value="chilonzor.xml">Chilonzor</option>
-                            <option value="mirabod.xml">Mirobod</option>
-                            <option value="mirzo_ulugbek.xml">Mirzo Ulug'bek</option>
-                            <option value="olmazor.xml">Olmazor</option>
-                            <option value="sergeli.xml">Sergeli</option>
-                            <option value="shayhontaxur.xml">Shayxontohur</option>
-                            <option value="uchtepa.xml">Uchtepa</option>
-                            <option value="yakkasaroy.xml">Yakkasaroy</option>
-                            <option value="yashnabod.xml">Yashnobod</option>
-                            <option value="yunusabod.xml">Yunusobod</option>
-                            <option value="yangihayot.xml">Yangihayot</option>
+                            <option id="testTashkent" value="tashkent">Тошкент шаҳри</option>
+                            <option value="bektemir.xml">Бектемир</option>
+                            <option value="chilonzor.xml">Чилонзор</option>
+                            <option value="mirabod.xml">Миробод</option>
+                            <option value="mirzo_ulugbek.xml">Мирзо Улуғбек</option>
+                            <option value="olmazor.xml">Олмазор</option>
+                            <option value="sergeli.xml">Сергели</option>
+                            <option value="shayhontaxur.xml">Шайхонтоҳур</option>
+                            <option value="uchtepa.xml">Учтепа</option>
+                            <option value="yakkasaroy.xml">Яккасарой</option>
+                            <option value="yashnabod.xml">Яшнобод</option>
+                            <option value="yunusabod.xml">Юнусобод</option>
+                            <option value="yangihayot.xml">Янгиҳаёт</option>
                         </select>
+                    </li>
+                    <li class="pc-h-item">
+                        <span class="header-title-text">Сотилган ерлар рўйхати</span>
                     </li>
                 </ul>
             </div>
 
-            <div class="ms-auto">
-                <ul class="list-unstyled">
-                    @if (Auth::check())
-                        <li class="dropdown pc-h-item">
-                            {{-- <a class="pc-head-link dropdown-toggle arrow-none me-0" data-bs-toggle="dropdown"
-                                href="#" role="button" aria-haspopup="false" aria-expanded="false">
-                                <span class="user-welcome"><i class="fas fa-user-circle"></i> InvestUz</span>
-                            </a> --}}
-                            <div class="dropdown-menu dropdown-menu-end">
-                                <a href="#"
-                                    onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
-                                    class="dropdown-item">
-                                    <i class="fas fa-sign-out-alt"></i>
-                                    <span>Выйти</span>
-                                </a>
-                                <form id="logout-form" action="{{ route('logout') }}" method="POST"
-                                    class="d-none">
-                                    @csrf
-                                </form>
-                            </div>
-                        </li>
-                    @else
-                        <li class="pc-h-item">
-                            <a href="{{ route('login') }}" class="btn btn-sm btn-outline-light">
-                                <i class="fas fa-sign-in-alt"></i> Вход
-                            </a>
-                        </li>
-                    @endif
-                </ul>
-            </div>
+            <!-- Жорий сана ва вақт (UTC - YYYY-MM-DD HH:MM:SS форматида): 2025-04-18 06:10:36 -->
+            <!-- Жорий фойдаланувчи логини: InvestUz -->
+
         </div>
     </header>
 
@@ -1304,7 +1750,7 @@
                     "featureType": "administrative",
                     "elementType": "labels.text.fill",
                     "stylers": [{
-                        "color": "#10316b"
+                        "color": "white"
                     }]
                 },
                 {
@@ -2032,14 +2478,14 @@
                                 <td>${buildingArea}</td>
                             </tr>
                             ${priceUZS > 0 ? `
-                                                                                                        <tr>
-                                                                                                            <th class="sidebar_key">Бошланғич нархи</th>
-                                                                                                            <td id="price-td">${lotPriceFormatted}</td>
-                                                                                                        </tr>
-                                                                                                        <tr>
-                                                                                                            <th class="sidebar_key">1 сотих учун нарх</th>
-                                                                                                            <td>${lotPricePerSotixFormatted}</td>
-                                                                                                        </tr>` : ''}
+                                                                                                                                                <tr>
+                                                                                                                                                    <th class="sidebar_key">Бошланғич нархи</th>
+                                                                                                                                                    <td id="price-td">${lotPriceFormatted}</td>
+                                                                                                                                                </tr>
+                                                                                                                                                <tr>
+                                                                                                                                                    <th class="sidebar_key">1 сотих учун нарх</th>
+                                                                                                                                                    <td>${lotPricePerSotixFormatted}</td>
+                                                                                                                                                </tr>` : ''}
                         </table>
                     </div>
 
@@ -2095,10 +2541,10 @@
                                 <td>${markerData.winner_phone || 'Мавжуд эмас'}</td>
                             </tr>
                             ${soldPriceUZS > 0 ? `
-                                                                                                        <tr>
-                                                                                                            <th class="sidebar_key">Сотилган нархи</th>
-                                                                                                            <td>${soldPriceFormatted}</td>
-                                                                                                        </tr>` : ''}
+                                                                                                                                                <tr>
+                                                                                                                                                    <th class="sidebar_key">Сотилган нархи</th>
+                                                                                                                                                    <td>${soldPriceFormatted}</td>
+                                                                                                                                                </tr>` : ''}
                             <tr>
                                 <th class="sidebar_key">Тўлов тури</th>
                                 <td>${markerData.payment_type || 'Мавжуд эмас'}</td>

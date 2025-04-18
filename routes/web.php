@@ -26,6 +26,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::post('/admin/cache-action', [AktivController::class, 'handleCacheAction'])->name('admin.cache.action');
 
 
 Route::get('/home', [HomeController::class, 'index'])->name('home');
