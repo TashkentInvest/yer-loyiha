@@ -27,7 +27,6 @@ class SystemInitSeeder extends Seeder
                 UserSeeder::class,
                 RegionsSeeder::class,
                 DistrictsSeeder::class,
-                CategorySeeder::class,
                 // ExelSeeder::class,
             ]
         );

@@ -62,7 +62,8 @@ class AktivsDataSeeder extends Seeder
                             'location' => trim(($row[2] ?? '') . ' ' . ($row[3] ?? '')), // Туман + Ер манзили
                             'land_area' => $row[6] ?? 0, // Ер майдони
                             'building_area' => $row[23] ?? 0, // Қурилиш умумий майдони
-                            'building_type' => $this->mapBuildingType($row[7] ?? ''), // Қурилиш объект тури
+                            'building_type' => 'NoturarBino', // Қурилиш объект тури
+                            // 'building_type' => $this->mapBuildingType($row[7] ?? ''), // Қурилиш объект тури
                             'building_type_comment' => $row[7] ?? '', // Қурилиш объект тури
                             'start_price' => $row[9] ?? 0, // Бошланғич нархи
                             'sold_price' => $row[11] ?? 0, // Сотилган нархи

@@ -18,20 +18,7 @@ class DatabaseSeeder extends Seeder
             SystemInitSeeder::class,
             StreetsTableSeeder::class,
             SubStreetSeeder::class,
-            SubyektShakliSeeder::class,
-            OrderAtkazSeeder::class,
-            RuxsatnomaKimTamonidanSeeder::class,
-            RuxsatnomaBerilganIshTuriSeeder::class,
-            RuxsatnomaTuriSeeder::class,
-            BankSeeder::class,
-            XujjatTuriSeeder::class,
-            XujjatBerilganJoySeeder::class,
-            KjSeeder::class,
-            KoSeeder::class,
-            KtSeeder::class,
-            KzSeeder::class,
-            // ExcelToDatabaseSeeder::class,
-            // ClientDataSeeder::class,
+
             AktivsDataSeeder::class,
         ]);
     }

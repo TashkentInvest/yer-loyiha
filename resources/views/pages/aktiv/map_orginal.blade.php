@@ -1019,7 +1019,7 @@
                     </table>
                 </div>
 
-                <ul class="pc-navbar">
+                {{-- <ul class="pc-navbar">
                     <li class="pc-item pc-caption"><label>Объект турлари</label></li>
                     <li class="pc-item">
                         <div class="legend-item" style="display: flex; align-items: center; gap: 8px;">
@@ -1040,7 +1040,7 @@
                                 объектлари</span>
                         </div>
                     </li>
-                </ul>
+                </ul> --}}
 
                 @if (Auth::check())
                     <ul class="pc-navbar">
@@ -1544,7 +1544,7 @@
             <span>Тижорат объектлари</span>
         </div>
     `;
-            map.controls[google.maps.ControlPosition.RIGHT_BOTTOM].push(legendDiv);
+            // map.controls[google.maps.ControlPosition.RIGHT_BOTTOM].push(legendDiv);
         }
 
         // Add enhanced search box
@@ -1723,8 +1723,8 @@
                                 <div class="map-info-window">
                                     <div class="info-header">
                                         <h4>${title}</h4>
-                                        <span class="info-badge ${markerData.building_type}">${markerData.building_type}</span>
                                         <span class="info-badge ${markerData.building_type_comment}">${markerData.building_type_comment}</span>
+
                                     </div>
                                     <div class="info-body">
                                         <p><i class="fas fa-map-marker-alt"></i> ${markerData.address || 'N/A'}</p>
