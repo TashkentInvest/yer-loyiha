@@ -2444,7 +2444,7 @@
                         <div class="sidebar-tab active" data-tab="basic-info">Асосий маълумот</div>
                         <div class="sidebar-tab" data-tab="details">Тафсилотлар</div>
                         <div class="sidebar-tab" data-tab="auction">Аукцион</div>
-                        <div class="sidebar-tab" data-tab="additional">Қўшимча</div>
+                        <div class="sidebar-tab" data-tab="additional">Лойиҳа</div>
                     </div>
 
                     <div id="basic-info" class="tab-content active">
@@ -2462,7 +2462,7 @@
                                 <td>${buildingTypeBadge}</td>
                             </tr>
                             <tr>
-                                <th class="sidebar_key">Бино тури изоҳи</th>
+                                <th class="sidebar_key">Фаолият Тури</th>
                                 <td>${markerData.building_type_comment}</td>
                             </tr>
                             <tr>
@@ -2471,21 +2471,13 @@
                             </tr>
                             <tr>
                                 <th class="sidebar_key">Ер майдони</th>
-                                <td>${markerData.land_area || 'Мавжуд эмас'} м²</td>
+                                <td>${markerData.land_area || 'Мавжуд эмас'} га</td>
                             </tr>
                             <tr>
                                 <th class="sidebar_key">Қурилиш майдони</th>
                                 <td>${buildingArea}</td>
                             </tr>
-                            ${priceUZS > 0 ? `
-                                                                                                                                                <tr>
-                                                                                                                                                    <th class="sidebar_key">Бошланғич нархи</th>
-                                                                                                                                                    <td id="price-td">${lotPriceFormatted}</td>
-                                                                                                                                                </tr>
-                                                                                                                                                <tr>
-                                                                                                                                                    <th class="sidebar_key">1 сотих учун нарх</th>
-                                                                                                                                                    <td>${lotPricePerSotixFormatted}</td>
-                                                                                                                                                </tr>` : ''}
+
                         </table>
                     </div>
 
@@ -2559,7 +2551,7 @@
                                 <td>${markerData.investment_amount || 'Мавжуд эмас'}</td>
                             </tr>
                             <tr>
-                                <th class="sidebar_key">Яратилган иш ўринлари</th>
+                                <th class="sidebar_key">Яратиладиган иш ўринлари</th>
                                 <td>${markerData.job_creation_count || 'Мавжуд эмас'}</td>
                             </tr>
                             <tr>
