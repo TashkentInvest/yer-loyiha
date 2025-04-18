@@ -63,6 +63,17 @@
             background-color: #f8f9fa;
         }
 
+        .datatable-table td,
+        .datatable-table th,
+        .table td,
+        .table th {
+            border-top: 1px solid #e7eaee;
+            border-bottom: none;
+            white-space: unset !important;
+            padding: .7rem .75rem;
+            vertical-align: middle
+        }
+
         /* Government color scheme */
         :root {
             --primary-color: #10316b;
@@ -1013,7 +1024,7 @@
                             </tr>
                             <tr>
                                 <td><i class="fas fa-building"></i> Объектлар</td>
-                                <td id="savdodaTurganJamiSoni">1,457</td>
+                                <td id="savdodaTurganJamiSoni">-</td>
                             </tr>
                         </tbody>
                     </table>
@@ -2021,14 +2032,14 @@
                                 <td>${buildingArea}</td>
                             </tr>
                             ${priceUZS > 0 ? `
-                                                                                        <tr>
-                                                                                            <th class="sidebar_key">Бошланғич нархи</th>
-                                                                                            <td id="price-td">${lotPriceFormatted}</td>
-                                                                                        </tr>
-                                                                                        <tr>
-                                                                                            <th class="sidebar_key">1 сотих учун нарх</th>
-                                                                                            <td>${lotPricePerSotixFormatted}</td>
-                                                                                        </tr>` : ''}
+                                                                                                        <tr>
+                                                                                                            <th class="sidebar_key">Бошланғич нархи</th>
+                                                                                                            <td id="price-td">${lotPriceFormatted}</td>
+                                                                                                        </tr>
+                                                                                                        <tr>
+                                                                                                            <th class="sidebar_key">1 сотих учун нарх</th>
+                                                                                                            <td>${lotPricePerSotixFormatted}</td>
+                                                                                                        </tr>` : ''}
                         </table>
                     </div>
 
@@ -2084,10 +2095,10 @@
                                 <td>${markerData.winner_phone || 'Мавжуд эмас'}</td>
                             </tr>
                             ${soldPriceUZS > 0 ? `
-                                                                                        <tr>
-                                                                                            <th class="sidebar_key">Сотилган нархи</th>
-                                                                                            <td>${soldPriceFormatted}</td>
-                                                                                        </tr>` : ''}
+                                                                                                        <tr>
+                                                                                                            <th class="sidebar_key">Сотилган нархи</th>
+                                                                                                            <td>${soldPriceFormatted}</td>
+                                                                                                        </tr>` : ''}
                             <tr>
                                 <th class="sidebar_key">Тўлов тури</th>
                                 <td>${markerData.payment_type || 'Мавжуд эмас'}</td>
@@ -2231,7 +2242,7 @@
             let polygons = {};
             let currentHighlight = null;
 
-            const defaultColor = '#c7a5a594';
+            const defaultColor = 'lightgreen';
             const highlightColor = '#EEF5FF';
 
             const kmlFileNames = [
@@ -2316,7 +2327,7 @@
                 const polygonArray = paths.map(path => {
                     const polygon = new google.maps.Polygon({
                         paths: path,
-                        strokeColor: '#fff',
+                        strokeColor: 'red',
                         strokeOpacity: 0.8,
                         strokeWeight: 2,
                         fillColor: fillColor,
@@ -2350,165 +2361,168 @@
                 }) : [];
             }
 
+            // Жорий сана ва вақт (UTC - YYYY-MM-DD HH:MM:SS форматида): 2025-04-18 05:52:10
+            // Жорий фойдаланувчи логини: InvestUz
+
             function fetchDistrictInfo(districtFile) {
                 const districtInfo = {
                     'bektemir.xml': {
-                        name: 'Bektemir',
-                        maydoni: '32.0 (km²)',
-                        aholiSoni: '60,5 ming',
+                        name: 'Бектемир',
+                        maydoni: '32.0 (км²)',
+                        aholiSoni: '60,5 минг',
                         TumanlarSoni: '20',
                         MahallaSoni: '18',
-                        savdodaTurganJamiSoni: 'N/A'
+                        savdodaTurganJamiSoni: '-'
                     },
                     'chilonzor.xml': {
-                        name: 'Chilonzor',
-                        maydoni: '30,0 (km²)',
-                        aholiSoni: '275,1 ming',
+                        name: 'Чилонзор',
+                        maydoni: '30,0 (км²)',
+                        aholiSoni: '275,1 минг',
                         TumanlarSoni: '45',
                         MahallaSoni: '45',
-                        savdodaTurganJamiSoni: 'N/A'
+                        savdodaTurganJamiSoni: '-'
                     },
                     'mirabod.xml': {
-                        name: 'Mirobod',
-                        maydoni: '17,0 (km²)',
-                        aholiSoni: '152,2 ming',
+                        name: 'Миробод',
+                        maydoni: '17,0 (км²)',
+                        aholiSoni: '152,2 минг',
                         TumanlarSoni: '30',
                         MahallaSoni: '39',
-                        savdodaTurganJamiSoni: 'N/A'
+                        savdodaTurganJamiSoni: '-'
                     },
                     'mirzo_ulugbek.xml': {
-                        name: 'Mirzo Ulug',
-                        maydoni: '59,06 (km²)',
-                        aholiSoni: '331,2 ming',
+                        name: 'Мирзо Улуғбек',
+                        maydoni: '59,06 (км²)',
+                        aholiSoni: '331,2 минг',
                         TumanlarSoni: '35',
                         MahallaSoni: '70',
-                        savdodaTurganJamiSoni: 'N/A'
+                        savdodaTurganJamiSoni: '-'
                     },
                     'olmazor.xml': {
-                        name: 'Olmazor',
-                        maydoni: '34,0 (km²)',
-                        aholiSoni: '404,4 ming',
+                        name: 'Олмазор',
+                        maydoni: '34,0 (км²)',
+                        aholiSoni: '404,4 минг',
                         TumanlarSoni: '50',
                         MahallaSoni: '64',
-                        savdodaTurganJamiSoni: 'N/A'
+                        savdodaTurganJamiSoni: '-'
                     },
                     'sergeli.xml': {
-                        name: 'Sergeli',
-                        maydoni: '54,75 (km²)',
-                        aholiSoni: '168,2 ming',
+                        name: 'Сергели',
+                        maydoni: '54,75 (км²)',
+                        aholiSoni: '168,2 минг',
                         TumanlarSoni: '55',
                         MahallaSoni: '46',
-                        savdodaTurganJamiSoni: 'N/A'
+                        savdodaTurganJamiSoni: '-'
                     },
                     'shayhontaxur.xml': {
-                        name: 'Shayxontohur',
-                        maydoni: '27,0 (km²)',
-                        aholiSoni: '365,4 ming',
+                        name: 'Шайхонтоҳур',
+                        maydoni: '27,0 (км²)',
+                        aholiSoni: '365,4 минг',
                         TumanlarSoni: '15',
                         MahallaSoni: '51',
-                        savdodaTurganJamiSoni: 'N/A'
+                        savdodaTurganJamiSoni: '-'
                     },
                     'uchtepa.xml': {
-                        name: 'Uchtepa',
-                        maydoni: '28,0 (km²)',
-                        aholiSoni: '299,4 ming',
+                        name: 'Учтепа',
+                        maydoni: '28,0 (км²)',
+                        aholiSoni: '299,4 минг',
                         TumanlarSoni: '60',
                         MahallaSoni: '60',
-                        savdodaTurganJamiSoni: 'N/A'
+                        savdodaTurganJamiSoni: '-'
                     },
                     'yakkasaroy.xml': {
-                        name: 'Yakkasaroy',
-                        maydoni: '14,0 (km²)',
-                        aholiSoni: '133,4 ming',
+                        name: 'Яккасарой',
+                        maydoni: '14,0 (км²)',
+                        aholiSoni: '133,4 минг',
                         TumanlarSoni: '40',
                         MahallaSoni: '21',
-                        savdodaTurganJamiSoni: 'N/A'
+                        savdodaTurganJamiSoni: '-'
                     },
                     'yashnabod.xml': {
-                        name: 'Yashnobod',
-                        maydoni: '67,42 (km²)',
-                        aholiSoni: '300,1 ming',
+                        name: 'Яшнобод',
+                        maydoni: '67,42 (км²)',
+                        aholiSoni: '300,1 минг',
                         TumanlarSoni: '25',
                         MahallaSoni: '67',
-                        savdodaTurganJamiSoni: 'N/A'
+                        savdodaTurganJamiSoni: '-'
                     },
                     'yunusabod.xml': {
-                        name: 'Yunusobod',
-                        maydoni: '41,0 (km²)',
-                        aholiSoni: '376,1 ming',
+                        name: 'Юнусобод',
+                        maydoni: '41,0 (км²)',
+                        aholiSoni: '376,1 минг',
                         TumanlarSoni: '30',
                         MahallaSoni: '64',
-                        savdodaTurganJamiSoni: 'N/A'
+                        savdodaTurganJamiSoni: '-'
                     },
                     'yangihayot.xml': {
-                        name: 'Yangihayot',
-                        maydoni: '44,2 (km²)',
-                        aholiSoni: '174,7 ming',
+                        name: 'Янгиҳаёт',
+                        maydoni: '44,2 (км²)',
+                        aholiSoni: '174,7 минг',
                         TumanlarSoni: '52',
                         MahallaSoni: '30',
-                        savdodaTurganJamiSoni: 'N/A'
+                        savdodaTurganJamiSoni: '-'
                     },
                     'tashkent': {
-                        name: 'Tashkent',
-                        maydoni: '43,5 (km²)',
-                        aholiSoni: '3 mln',
+                        name: 'Тошкент',
+                        maydoni: '43,5 (км²)',
+                        aholiSoni: '3 млн',
                         TumanlarSoni: '12',
                         MahallaSoni: '585',
-                        savdodaTurganJamiSoni: 'N/A'
-                    } // Static info for Tashkent
+                        savdodaTurganJamiSoni: '-'
+                    } // Тошкент учун статик маълумот
                 };
 
-                // Get information for the selected district
+                // Танланган туман учун маълумотни олиш
                 const info = districtInfo[districtFile] || {
                     name: '',
-                    maydoni: 'N/A',
-                    aholiSoni: 'N/A',
-                    TumanlarSoni: 'N/A',
-                    MahallaSoni: 'N/A',
-                    savdodaTurganJamiSoni: 'N/A'
+                    maydoni: 'Мавжуд эмас',
+                    aholiSoni: 'Мавжуд эмас',
+                    TumanlarSoni: 'Мавжуд эмас',
+                    MahallaSoni: 'Мавжуд эмас',
+                    savdodaTurganJamiSoni: '-'
                 };
 
                 updateInfoTable(info);
             }
 
             function updateInfoTable(data) {
-                // Create the info array conditionally
+                // Маълумотлар массивини шартли равишда яратиш
                 const info = [{
-                        metric: 'Maydoni',
+                        metric: 'Майдони',
                         value: data.maydoni
                     },
                     {
-                        metric: 'Aholi Soni',
+                        metric: 'Аҳоли сони',
                         value: data.aholiSoni
                     },
-                    // Conditionally include 'Tumanlar soni' only if the name is 'Tashkent'
-                    ...(data.name === 'Tashkent' ? [{
-                        metric: 'Tumanlar soni',
+                    // 'Туманлар сони'ни фақат исм 'Тошкент' бўлганда қўшиш
+                    ...(data.name === 'Тошкент' ? [{
+                        metric: 'Туманлар сони',
                         value: data.TumanlarSoni
                     }] : []),
                     {
-                        metric: 'Mahalla soni',
+                        metric: 'Маҳалла сони',
                         value: data.MahallaSoni
                     },
                     {
-                        metric: 'Savdodagi obyektlar',
+                        metric: 'Объектлар',
                         value: data.savdodaTurganJamiSoni
                     }
                 ];
 
-                // Update the district name
-                document.getElementById('district-name').textContent = data.name || 'N/A';
+                // Туман номини янгилаш
+                document.getElementById('district-name').textContent = data.name || 'Мавжуд эмас';
 
-                // Update the table with the provided info
+                // Жадвални берилган маълумотлар билан янгилаш
                 updateTable(info);
             }
 
             function updateTable(info) {
-                // Get the table body
+                // Жадвал танасини олиш
                 const tableBody = document.getElementById('info-table').getElementsByTagName('tbody')[0];
-                tableBody.innerHTML = ''; // Clear existing rows
+                tableBody.innerHTML = ''; // Мавжуд қаторларни тозалаш
 
-                // Add rows to the table
+                // Жадвалга қаторлар қўшиш
                 info.forEach(item => {
                     const row = document.createElement('tr');
                     const metricCell = document.createElement('td');
