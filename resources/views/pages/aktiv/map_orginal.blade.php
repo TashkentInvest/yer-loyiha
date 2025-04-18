@@ -2481,6 +2481,13 @@
                                 </td>
                             </tr>
 
+                            <tr>
+                                <th class="sidebar_key" >Оборотга кирган муддат</th>
+                                <td style="color:red">
+                                    ${markerData.auction_date_status || 'Мавжуд эмас'}
+
+                                </td>
+                            </tr>
 
                         </table>
                     </div>
@@ -2537,10 +2544,10 @@
                                 <td>${markerData.winner_phone || 'Мавжуд эмас'}</td>
                             </tr>
                             ${soldPriceUZS > 0 ? `
-                                                                                                                                                            <tr>
-                                                                                                                                                                <th class="sidebar_key">Сотилган нархи</th>
-                                                                                                                                                                <td>${soldPriceFormatted}</td>
-                                                                                                                                                            </tr>` : ''}
+                                                                                                                                                                <tr>
+                                                                                                                                                                    <th class="sidebar_key">Сотилган нархи</th>
+                                                                                                                                                                    <td>${soldPriceFormatted}</td>
+                                                                                                                                                                </tr>` : ''}
                             <tr>
                                 <th class="sidebar_key">Тўлов тури</th>
                                 <td>${markerData.payment_type || 'Мавжуд эмас'}</td>

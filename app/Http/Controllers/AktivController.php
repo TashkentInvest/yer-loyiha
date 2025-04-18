@@ -9,9 +9,11 @@ use App\Models\Regions;
 use App\Models\Street;
 use App\Models\SubStreet;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Artisan;
+use Illuminate\Support\Facades\Date;
 use Illuminate\Support\Facades\Http;
 use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Support\Facades\Log;
@@ -807,6 +809,7 @@ class AktivController extends Controller
                 $aktivs = Aktiv::with(['files', 'user'])->get();
             }
 
+
             // Define the default image in case there is no image
             $defaultImage = 'https://cdn.dribbble.com/users/1651691/screenshots/5336717/404_v2.png';
 
@@ -837,6 +840,33 @@ class AktivController extends Controller
                     }
                 }
 
+                // try {
+
+                //     // Log::info(Carbon::now() - $aktiv->auction_date);
+                // } catch (\Exception $e) {
+                //     Log::error('Error extracting price from additional info: ' . $e->getMessage());
+                //     $sold_price = 0; // Default value in case of error
+                // }
+            $currentDate = Carbon::now();
+
+                $auction_date_status = null;
+                if ($aktiv->auction_date) {
+                    $auctionDate = Carbon::parse($aktiv->auction_date);
+                    $diffInDays = $currentDate->diffInDays($auctionDate, false);
+                    $diffInMonth = $currentDate->diffInMonths($auctionDate, false);
+
+                    if ($diffInDays > 0) {
+                        // Auction is in the future
+                        $auction_date_status = $diffInDays . " кун қолди" . ($diffInMonth > 0 ? " (" . $diffInMonth . " ой)" : "");
+                    } elseif ($diffInDays < 0) {
+                        // Auction is in the past
+                        $auction_date_status = abs($diffInDays) . " кун олдин" . ($diffInMonth < 0 ? " (" . abs($diffInMonth) . " ой)" : "");
+                    } else {
+                        // Auction is today
+                        $auction_date_status = "Бугун";
+                    }
+                }
+
                 // Return the necessary data
                 return [
                     'lat' => $aktiv->latitude ?? null,
@@ -859,6 +889,7 @@ class AktivController extends Controller
                     'sold_price' => $aktiv->sold_price ?? 0,
                     'zone' => $aktiv->zone ?? '',
                     'auction_date' => $aktiv->auction_date ? $aktiv->auction_date->format('Y-m-d') : null,
+                    'auction_date_status' => $auction_date_status ?? null,
                 ];
             })->filter(function ($value) {
                 return !is_null($value);
