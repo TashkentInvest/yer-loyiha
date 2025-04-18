@@ -2420,7 +2420,6 @@
             // Share URL
             const shareUrl =
                 `${window.location.origin}${window.location.pathname}?lat=${markerData.lat}&lng=${markerData.lng}`;
-
             sidebar.innerHTML = `
                 <span class="close-btn">&times;</span>
                 <div class="info-content">
@@ -2473,9 +2472,16 @@
                                 <th class="sidebar_key">Ер майдони</th>
                                 <td>${markerData.land_area || 'Мавжуд эмас'} га</td>
                             </tr>
+
                             <tr>
-                                <th class="sidebar_key">Қурилиш майдони</th>
-                                <td>${buildingArea}</td>
+                                <th class="sidebar_key">Ер майдони</th>
+                                <td>
+                                    ${markerData.land_area_comment ? `<span class="land-area-timeframe">(Муддати: ${markerData.land_area_comment || 'Мавжуд эмас'})</span>` : ''}
+                                </td>
+                            </tr>
+                                <tr>
+                                <th class="sidebar_key">Зона</th>
+                                <td>${markerData.zone || 'Мавжуд эмас'} га</td>
                             </tr>
 
                         </table>
@@ -2533,10 +2539,10 @@
                                 <td>${markerData.winner_phone || 'Мавжуд эмас'}</td>
                             </tr>
                             ${soldPriceUZS > 0 ? `
-                                                                                                                                                <tr>
-                                                                                                                                                    <th class="sidebar_key">Сотилган нархи</th>
-                                                                                                                                                    <td>${soldPriceFormatted}</td>
-                                                                                                                                                </tr>` : ''}
+                                                                                                                                                            <tr>
+                                                                                                                                                                <th class="sidebar_key">Сотилган нархи</th>
+                                                                                                                                                                <td>${soldPriceFormatted}</td>
+                                                                                                                                                            </tr>` : ''}
                             <tr>
                                 <th class="sidebar_key">Тўлов тури</th>
                                 <td>${markerData.payment_type || 'Мавжуд эмас'}</td>
