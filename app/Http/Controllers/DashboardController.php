@@ -81,8 +81,8 @@ class DashboardController extends Controller
         for ($i = 11; $i >= 0; $i--) {
             $month = Carbon::now()->subMonths($i);
             $monthLabel = $month->format('M Y');
-            $monthStats = Aktiv::whereYear('created_at', $month->year)
-                ->whereMonth('created_at', $month->month)
+            $monthStats = Aktiv::whereYear('auction_date', $month->year)
+                ->whereMonth('auction_date', $month->month)
                 ->count();
             $monthlyStats[$monthLabel] = $monthStats;
         }
