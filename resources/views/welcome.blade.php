@@ -147,15 +147,15 @@
         <div class="content">
             <!-- Toshkent Invest Logo -->
             <img src="https://toshkentinvest.uz/assets/frontend/tild6238-3031-4265-a564-343037346231/tic_logo_blue.png" alt="Toshkent Invest Logo" class="logo">
-            
+
             {{-- <h3 class="panel_site_title">@lang('panel.site_title')</h3> --}}
-            
+
             <div class="welcome_box">
                 <h1>Хуш келибсиз!</h1>
 
                 @if (Route::has('login'))
                     @auth
-                        <a href="{{ route('aktivs.index') }}" class="btn">Кириш</a>
+                        <a href="{{ route('dashboard') }}" class="btn">Кириш</a>
                     @else
                         <a href="{{ route('login') }}" class="btn">Логин</a>
                     @endauth
